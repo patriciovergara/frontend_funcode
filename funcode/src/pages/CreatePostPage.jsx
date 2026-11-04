@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import usePosts from "../hooks/usePosts";
 import { categories } from "../data/mockData";
 import { IS_DEMO_MODE } from "../services/apiConfig";
+import { isValidImageSource } from "../utils/isValidImageSource";
 
 const initialForm = {
   title: "",
@@ -74,15 +75,10 @@ function CreatePostPage() {
       return;
     }
 
-    try {
-      const url = new URL(imageUrl);
-
-      if (!["https:", "http:"].includes(url.protocol)) {
-        setError("La imagen debe utilizar una URL HTTP o HTTPS.");
-        return;
-      }
-    } catch {
-      setError("Ingresa una URL válida para la imagen.");
+    if (!isValidImageSource(imageUrl)) {
+      setError(
+        "Ingresa una ruta de /assets/servicios/ o una URL HTTP/HTTPS valida.",
+      );
       return;
     }
 
@@ -237,22 +233,25 @@ function CreatePostPage() {
 
               <div className="mb-4">
                 <label htmlFor="post-image" className="form-label">
-                  URL de imagen
+                  Imagen: ruta local o URL
                 </label>
 
                 <input
                   id="post-image"
                   name="image_url"
-                  type="url"
+                  type="text"
                   className="form-control"
-                  placeholder="https://ejemplo.com/imagen.jpg"
+                  placeholder="/assets/servicios/landing-profesional.webp"
                   value={form.image_url}
                   onChange={handleChange}
                   required
                 />
 
                 <p className="form-text">
-                  Utiliza una dirección pública que apunte a una imagen.
+                  <p className="form-text">
+                    Usa /assets/servicios/nombre-del-archivo.webp o una URL
+                    publica.
+                  </p>
                 </p>
               </div>
             </div>
@@ -263,7 +262,7 @@ function CreatePostPage() {
                   <h2 className="h5">Vista previa de imagen</h2>
 
                   <div className="bg-secondary-subtle rounded p-3">
-                    {/^https?:\/\//i.test(form.image_url.trim()) ? (
+                    {isValidImageSource(form.image_url) ? (
                       <img
                         src={form.image_url.trim()}
                         alt="Vista previa de la publicación"
@@ -275,7 +274,7 @@ function CreatePostPage() {
                       />
                     ) : (
                       <p className="text-secondary text-center py-5 mb-0">
-                        Ingresa una URL HTTP o HTTPS.
+                        Ingresa una ruta local o una URL de imagen.
                       </p>
                     )}
                   </div>
