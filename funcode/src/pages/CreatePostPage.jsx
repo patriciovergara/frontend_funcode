@@ -93,6 +93,7 @@ function CreatePostPage() {
         title,
         description,
         price,
+        price_type: priceType,
         image_url: imageUrl,
         category_id: category.id,
       });
@@ -171,22 +172,50 @@ function CreatePostPage() {
                 </div>
 
                 <div className="col-12 col-md-6">
-                  <label htmlFor="post-price" className="form-label">
-                    Precio (CLP)
+                  <label htmlFor="post-price-type" className="form-label">
+                    Modalidad de precio
                   </label>
 
-                  <input
-                    id="post-price"
-                    name="price"
-                    type="number"
-                    className="form-control"
-                    min="1"
-                    max="999999999999"
-                    step="1"
-                    value={form.price}
+                  <select
+                    id="post-price-type"
+                    name="price_type"
+                    className="form-select"
+                    value={form.price_type}
                     onChange={handleChange}
                     required
-                  />
+                  >
+                    <option value="fixed">Precio fijo</option>
+                    <option value="from">Precio desde</option>
+                    <option value="quote">Cotiza con nosotros</option>
+                  </select>
+
+                  {form.price_type !== "quote" ? (
+                    <div className="mt-3">
+                      <label htmlFor="post-price" className="form-label">
+                        {form.price_type === "from"
+                          ? "Precio inicial (CLP)"
+                          : "Precio (CLP)"}
+                      </label>
+
+                      <input
+                        id="post-price"
+                        name="price"
+                        type="number"
+                        className="form-control"
+                        min="1"
+                        max="999999999999"
+                        step="1"
+                        value={form.price}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  ) : (
+                    <p className="form-text mb-0">
+                      El servicio mostrará “Cotiza con nosotros” y no publicará
+                      un importe.
+                    </p>
+                  )}
                 </div>
               </div>
 
