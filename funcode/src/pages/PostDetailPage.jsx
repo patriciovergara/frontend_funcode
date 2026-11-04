@@ -81,9 +81,7 @@ function PostDetailPage() {
                 align-items-center justify-content-center text-center p-4"
               style={{ minHeight: "320px" }}
             >
-              <span className="text-secondary">
-                Vista previa del producto
-              </span>
+              <span className="text-secondary">Vista previa del producto</span>
             </div>
           )}
         </div>
@@ -101,11 +99,11 @@ function PostDetailPage() {
             </Link>
           </p>
 
-          <p className="fs-2 fw-bold">{formatPrice(post.price)}</p>
-
-          <p className="text-secondary">
-            Publicado por: {post.user.name}
+          <p className="fs-2 fw-bold">
+            {formatPrice(post.price, post.price_type)}
           </p>
+
+          <p className="text-secondary">Publicado por: {post.user.name}</p>
 
           <h2 className="h5 mt-4">Descripción</h2>
 
@@ -113,10 +111,7 @@ function PostDetailPage() {
             {post.description}
           </p>
 
-          <Link
-            to="/productos"
-            className="btn btn-outline-dark mt-3"
-          >
+          <Link to="/productos" className="btn btn-outline-dark mt-3">
             Volver al catálogo
           </Link>
         </div>
@@ -131,8 +126,8 @@ function PostDetailPage() {
           {IS_DEMO_MODE
             ? "Esta publicación utiliza datos de demostración. "
             : ""}
-          La contratación y el contacto con el vendedor todavía
-          no están implementados.
+          La contratación y el contacto con el vendedor todavía no están
+          implementados.
         </p>
       </section>
     </article>

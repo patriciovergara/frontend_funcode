@@ -26,12 +26,9 @@ function PostCard({ post }) {
 
         <p className="text-secondary mb-2">{post.category.name}</p>
 
-        <p className="fw-bold">{formatPrice(post.price)}</p>
+        <p className="fw-bold">{formatPrice(post.price, post.price_type)}</p>
 
-        <Link
-          to={`/productos/${post.id}`}
-          className="text-dark mt-auto"
-        >
+        <Link to={`/productos/${post.id}`} className="text-dark mt-auto">
           Ver detalle →
         </Link>
       </div>
