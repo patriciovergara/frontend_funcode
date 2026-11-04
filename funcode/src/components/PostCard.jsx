@@ -17,7 +17,7 @@ function PostCard({ post }) {
             justify-content-center rounded-top"
           style={{ height: "180px" }}
         >
-          <span className="text-secondary">Imagen de demostración</span>
+          <span className="text-secondary">Funcode · Soluciones digitales</span>
         </div>
       )}
 
