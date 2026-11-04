@@ -43,10 +43,12 @@ function CreatePostPage() {
     const title = form.title.trim();
     const description = form.description.trim();
     const imageUrl = form.image_url.trim();
-    const price = Number(form.price);
+    const priceType = form.price_type;
+
+    const price = priceType === "quote" ? null : Number(form.price);
 
     const category = categories.find(
-      (item) => item.id === Number(form.category_id)
+      (item) => item.id === Number(form.category_id),
     );
 
     if (!title || !description || !imageUrl || !category) {
@@ -59,10 +61,14 @@ function CreatePostPage() {
       return;
     }
 
+    if (!["fixed", "from", "quote"].includes(priceType)) {
+      setError("Selecciona una modalidad de precio válida.");
+      return;
+    }
+
     if (
-      !Number.isInteger(price) ||
-      price <= 0 ||
-      price > 999999999999
+      priceType !== "quote" &&
+      (!Number.isSafeInteger(price) || price <= 0 || price > 999999999999)
     ) {
       setError("Ingresa un precio entero positivo de hasta 12 dígitos.");
       return;
@@ -96,7 +102,7 @@ function CreatePostPage() {
       setError(
         err instanceof Error
           ? err.message
-          : "No fue posible crear la publicación."
+          : "No fue posible crear la publicación.",
       );
     } finally {
       setIsSubmitting(false);
@@ -261,10 +267,7 @@ function CreatePostPage() {
             </button>
 
             {!isSubmitting && (
-              <Link
-                to="/mi-perfil"
-                className="btn btn-outline-secondary"
-              >
+              <Link to="/mi-perfil" className="btn btn-outline-secondary">
                 Cancelar
               </Link>
             )}
