@@ -8,6 +8,7 @@ import { IS_DEMO_MODE } from "../services/apiConfig";
 const initialForm = {
   title: "",
   category_id: "",
+  price_type: "from",
   price: "",
   description: "",
   image_url: "",
