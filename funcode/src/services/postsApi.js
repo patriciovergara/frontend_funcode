@@ -19,10 +19,13 @@ function requireToken(token) {
 }
 
 function postPayload(data) {
+  const priceType = data.price_type ?? "fixed";
+
   return {
     title: data.title,
     description: data.description,
-    price: Number(data.price),
+    price: priceType === "quote" ? null : Number(data.price),
+    price_type: priceType,
     image_url: data.image_url,
     category_id: Number(data.category_id),
   };
