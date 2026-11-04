@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import usePosts from "../hooks/usePosts";
 import usePost from "../hooks/usePost";
+import { isValidImageSource } from "../utils/isValidImageSource";
 
 import { categories } from "../data/mockData";
 import { IS_DEMO_MODE } from "../services/apiConfig";
@@ -65,7 +66,8 @@ function EditPostForm({ post }) {
   const [form, setForm] = useState({
     title: post.title,
     category_id: String(post.category.id),
-    price: String(post.price),
+    price_type: post.price_type ?? "fixed",
+    price: post.price == null ? "" : String(post.price),
     description: post.description,
     image_url: post.image_url,
   });
@@ -97,10 +99,11 @@ function EditPostForm({ post }) {
     const title = form.title.trim();
     const description = form.description.trim();
     const imageUrl = form.image_url.trim();
-    const price = Number(form.price);
+    const priceType = form.price_type;
+    const price = priceType === "quote" ? null : Number(form.price);
 
     const category = categories.find(
-      (item) => item.id === Number(form.category_id)
+      (item) => item.id === Number(form.category_id),
     );
 
     if (!title || !description || !imageUrl || !category) {
@@ -112,25 +115,23 @@ function EditPostForm({ post }) {
       setError("El título no puede superar los 150 caracteres.");
       return;
     }
-
-    if (
-      !Number.isInteger(price) ||
-      price <= 0 ||
-      price > 999999999999
-    ) {
-      setError("Ingresa un precio entero positivo de hasta 12 dígitos.");
+    if (!["fixed", "from", "quote"].includes(priceType)) {
+      setError("Selecciona una modalidad de precio valida.");
       return;
     }
 
-    try {
-      const url = new URL(imageUrl);
+    if (
+      priceType !== "quote" &&
+      (!Number.isSafeInteger(price) || price <= 0 || price > 999999999999)
+    ) {
+      setError("Ingresa un precio entero positivo de hasta 12 digitos.");
+      return;
+    }
 
-      if (!["http:", "https:"].includes(url.protocol)) {
-        setError("La imagen debe utilizar una URL HTTP o HTTPS.");
-        return;
-      }
-    } catch {
-      setError("Ingresa una URL válida para la imagen.");
+    if (!isValidImageSource(imageUrl)) {
+      setError(
+        "Ingresa una ruta de /assets/servicios/ o una URL HTTP/HTTPS valida.",
+      );
       return;
     }
 
@@ -141,6 +142,7 @@ function EditPostForm({ post }) {
         title,
         description,
         price,
+        price_type: priceType,
         image_url: imageUrl,
         category_id: category.id,
       });
@@ -150,7 +152,7 @@ function EditPostForm({ post }) {
       setError(
         err instanceof Error
           ? err.message
-          : "No fue posible actualizar la publicación."
+          : "No fue posible actualizar la publicación.",
       );
     } finally {
       setIsSubmitting(false);
@@ -211,22 +213,49 @@ function EditPostForm({ post }) {
             </div>
 
             <div className="col-12 col-md-6">
-              <label htmlFor="edit-price" className="form-label">
-                Precio (CLP)
+              <label htmlFor="edit-price-type" className="form-label">
+                Modalidad de precio
               </label>
 
-              <input
-                id="edit-price"
-                name="price"
-                type="number"
-                className="form-control"
-                min="1"
-                max="999999999999"
-                step="1"
-                value={form.price}
+              <select
+                id="edit-price-type"
+                name="price_type"
+                className="form-select"
+                value={form.price_type}
                 onChange={handleChange}
                 required
-              />
+              >
+                <option value="fixed">Precio fijo</option>
+                <option value="from">Precio desde</option>
+                <option value="quote">Cotiza con nosotros</option>
+              </select>
+
+              {form.price_type !== "quote" ? (
+                <div className="mt-3">
+                  <label htmlFor="edit-price" className="form-label">
+                    {form.price_type === "from"
+                      ? "Precio inicial (CLP)"
+                      : "Precio (CLP)"}
+                  </label>
+
+                  <input
+                    id="edit-price"
+                    name="price"
+                    type="number"
+                    className="form-control"
+                    min="1"
+                    max="999999999999"
+                    step="1"
+                    value={form.price}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              ) : (
+                <p className="form-text mb-0">
+                  Se mostrara "Cotiza con nosotros" sin un importe.
+                </p>
+              )}
             </div>
 
             <div className="col-12">
@@ -247,14 +276,15 @@ function EditPostForm({ post }) {
 
             <div className="col-12">
               <label htmlFor="edit-image" className="form-label">
-                URL de imagen
+                Imagen: ruta local o URL
               </label>
 
               <input
                 id="edit-image"
                 name="image_url"
-                type="url"
+                type="text"
                 className="form-control"
+                placeholder="/assets/servicios/landing-profesional.webp"
                 value={form.image_url}
                 onChange={handleChange}
                 required
@@ -275,10 +305,7 @@ function EditPostForm({ post }) {
               </button>
 
               {!isSubmitting && (
-                <Link
-                  to="/mi-perfil"
-                  className="btn btn-outline-secondary"
-                >
+                <Link to="/mi-perfil" className="btn btn-outline-secondary">
                   Cancelar
                 </Link>
               )}
