@@ -16,12 +16,11 @@ function ProductsPage() {
       ? requestedPage
       : 1;
 
-  const {
-    posts,
-    pagination,
-    isLoading,
-    error,
-  } = useCatalog({ category, search, page });
+  const { posts, pagination, isLoading, error } = useCatalog({
+    category,
+    search,
+    page,
+  });
 
   const totalPages = pagination
     ? Math.max(1, Math.ceil(pagination.total / pagination.limit))
@@ -48,23 +47,26 @@ function ProductsPage() {
 
   return (
     <section>
-      <h1 className="mb-4">Productos y servicios digitales</h1>
+      <h1 className="mb-3">Soluciones digitales para tu negocio</h1>
+
+      <p className="text-secondary mb-4">
+        Creamos páginas web, catálogos y sistemas a medida. Explora nuestros
+        servicios y revisa el alcance de cada solución.
+      </p>
 
       <div className="row g-3 mb-4">
         <div className="col-12 col-md-8">
           <label htmlFor="search" className="form-label">
-            Buscar por título
+            Buscar servicio
           </label>
 
           <input
             id="search"
             type="search"
             className="form-control"
-            placeholder="Ejemplo: catálogo"
+            placeholder="Ejemplo: landing page, CRM o catálogo"
             value={search}
-            onChange={(event) =>
-              updateFilter("search", event.target.value)
-            }
+            onChange={(event) => updateFilter("search", event.target.value)}
           />
         </div>
 
@@ -77,9 +79,7 @@ function ProductsPage() {
             id="category"
             className="form-select"
             value={category}
-            onChange={(event) =>
-              updateFilter("category", event.target.value)
-            }
+            onChange={(event) => updateFilter("category", event.target.value)}
           >
             <option value="">Todas las categorías</option>
 
@@ -111,7 +111,7 @@ function ProductsPage() {
       </div>
 
       {isLoading ? (
-        <p role="status">Cargando publicaciones...</p>
+        <p role="status">Cargando servicios...</p>
       ) : error ? (
         <p className="alert alert-danger" role="alert">
           {error}
@@ -121,7 +121,7 @@ function ProductsPage() {
           <p className="mb-0">
             {page > totalPages
               ? "La página solicitada no tiene resultados."
-              : "No encontré publicaciones con esos filtros."}
+              : "No encontramos servicios con esos filtros."}
           </p>
 
           {page > 1 && (
