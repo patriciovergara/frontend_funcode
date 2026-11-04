@@ -11,6 +11,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreatePostPage from "./pages/CreatePostPage";
 import EditPostPage from "./pages/EditPostPage";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
@@ -32,15 +33,14 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/mi-perfil" element={<ProfilePage />} />
 
-            <Route
-              path="/publicaciones/nueva"
-              element={<CreatePostPage />}
-            />
+            <Route element={<AdminRoute />}>
+              <Route path="/publicaciones/nueva" element={<CreatePostPage />} />
 
-            <Route
-              path="/publicaciones/:id/editar"
-              element={<EditPostPage />}
-            />
+              <Route
+                path="/publicaciones/:id/editar"
+                element={<EditPostPage />}
+              />
+            </Route>
           </Route>
 
           <Route
