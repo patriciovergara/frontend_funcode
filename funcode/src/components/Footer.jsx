@@ -1,187 +1,201 @@
 import { Link } from "react-router-dom";
-
 import useAuth from "../hooks/useAuth";
+import "./Footer.css";
 
 const solutions = [
   {
-    label: "Paginas web",
+    label: "Páginas web",
     to: "/productos?category=1",
   },
   {
-    label: "Catalogos digitales",
+    label: "Catálogos digitales",
     to: "/productos?category=2",
   },
   {
-    label: "Sistemas de gestion",
+    label: "Sistemas de gestión",
     to: "/productos?category=3",
   },
 ];
+
+function ArrowIcon({ diagonal = false }) {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {diagonal ? (
+        <>
+          <path d="M7 17 17 7" />
+          <path d="M7 7h10v10" />
+        </>
+      ) : (
+        <>
+          <path d="M4 12h16" />
+          <path d="m14 6 6 6-6 6" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function FooterLink({ to, children }) {
+  return (
+    <li>
+      <Link to={to} className="fc-footer__link">
+        <span>{children}</span>
+        <ArrowIcon diagonal />
+      </Link>
+    </li>
+  );
+}
 
 function Footer() {
   const { isAuthenticated } = useAuth();
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-dark text-light mt-auto">
-      <div className="container">
+    <footer className="fc-footer">
+      <div className="fc-footer__glow" aria-hidden="true" />
+
+      <div className="fc-footer__container">
         <section
-          className="py-5 border-bottom border-secondary"
-          aria-labelledby="footer-cta-title"
+          className="fc-footer__cta"
+          aria-labelledby="fc-footer-title"
         >
-          <div className="row g-4 align-items-center">
-            <div className="col-12 col-lg-8">
-              <p className="small text-uppercase text-light mb-2">
-                Soluciones digitales para tu negocio
-              </p>
+          <div>
+            <p className="fc-footer__eyebrow">
+              <span className="fc-footer__dot" aria-hidden="true" />
+              Diseño, desarrollo y tecnología
+            </p>
 
-              <h2 id="footer-cta-title" className="h3 mb-3">
-                Tu proximo proyecto digital comienza aqui.
-              </h2>
+            <h2 id="fc-footer-title" className="fc-footer__title">
+              Tu siguiente paso,
+              <br />
+              <span>en digital.</span>
+            </h2>
 
-              <p className="text-light mb-0">
-                Explora nuestras soluciones y cuentanos que necesita
-                tu negocio.
-              </p>
-            </div>
-
-            <div className="col-12 col-lg-4 text-lg-end">
-              <Link
-                to="/productos"
-                className="btn btn-light px-4 py-3"
-              >
-                Ver servicios y cotizar
-              </Link>
-            </div>
+            <p className="fc-footer__intro">
+              Sitios web y soluciones a medida para transformar
+              la forma en que tu negocio se presenta y trabaja.
+            </p>
           </div>
+
+          <Link to="/productos" className="fc-footer__button">
+            <span>Explorar servicios</span>
+
+            <span className="fc-footer__button-icon">
+              <ArrowIcon />
+            </span>
+          </Link>
         </section>
 
-        <div className="row g-5 py-5">
-          <div className="col-12 col-lg-6">
+        <div className="fc-footer__columns">
+          <div className="fc-footer__brand-column">
             <Link
               to="/"
-              className="d-inline-block text-white text-decoration-none fs-3 fw-semibold mb-3"
-              aria-label="Funcode: volver al inicio"
+              className="fc-footer__brand"
+              aria-label="Funcode: ir al inicio"
             >
-              Funcode
+              <span className="fc-footer__brand-symbol" aria-hidden="true">
+                {"</>"}
+              </span>
+
+              <span>
+                Fun<span className="fc-footer__brand-accent">code</span>
+              </span>
             </Link>
 
-            <p
-              className="text-light mb-3"
-              style={{ maxWidth: "380px" }}
-            >
-              Desarrollo web y soluciones digitales para impulsar
-              tu negocio.
+            <p className="fc-footer__description">
+              Desarrollo web y soluciones digitales para negocios
+              que quieren dar el siguiente paso.
             </p>
 
-            <p
-              className="small text-light mb-0"
-              style={{ maxWidth: "380px" }}
+            <span className="fc-footer__signature">
+              Ideas claras. Soluciones funcionales.
+            </span>
+          </div>
+
+          <nav aria-labelledby="fc-footer-solutions">
+            <h3
+              id="fc-footer-solutions"
+              className="fc-footer__heading"
             >
-              Desde tu primera pagina web hasta herramientas de
-              gestion adaptadas a tu forma de trabajar.
-            </p>
-          </div>
+              Soluciones
+            </h3>
 
-          <div className="col-12 col-sm-6 col-lg-3">
-            <nav aria-labelledby="footer-solutions-title">
-              <h2
-                id="footer-solutions-title"
-                className="h6 text-uppercase mb-4"
-              >
-                Soluciones
-              </h2>
+            <ul className="fc-footer__list">
+              {solutions.map((solution) => (
+                <FooterLink key={solution.to} to={solution.to}>
+                  {solution.label}
+                </FooterLink>
+              ))}
+            </ul>
+          </nav>
 
-              <ul className="list-unstyled mb-0">
-                {solutions.map((solution) => (
-                  <li
-                    key={solution.to}
-                    className="border-bottom border-secondary"
-                  >
-                    <Link
-                      to={solution.to}
-                      className="d-block text-light py-3 link-offset-3"
-                    >
-                      {solution.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
+          <nav aria-labelledby="fc-footer-explore">
+            <h3
+              id="fc-footer-explore"
+              className="fc-footer__heading"
+            >
+              Explorar
+            </h3>
 
-          <div className="col-12 col-sm-6 col-lg-3">
-            <nav aria-labelledby="footer-explore-title">
-              <h2
-                id="footer-explore-title"
-                className="h6 text-uppercase mb-4"
-              >
-                Explorar
-              </h2>
+            <ul className="fc-footer__list">
+              <FooterLink to="/">Inicio</FooterLink>
 
-              <ul className="list-unstyled mb-0">
-                <li className="border-bottom border-secondary">
-                  <Link
-                    to="/"
-                    className="d-block text-light py-3 link-offset-3"
-                  >
-                    Inicio
-                  </Link>
-                </li>
+              <FooterLink to="/productos">
+                Todos los servicios
+              </FooterLink>
 
-                <li className="border-bottom border-secondary">
-                  <Link
-                    to="/productos"
-                    className="d-block text-light py-3 link-offset-3"
-                  >
-                    Servicios
-                  </Link>
-                </li>
+              {isAuthenticated ? (
+                <FooterLink to="/mi-perfil">
+                  Mi perfil
+                </FooterLink>
+              ) : (
+                <>
+                  <FooterLink to="/login">Ingresar</FooterLink>
 
-                {isAuthenticated ? (
-                  <li className="border-bottom border-secondary">
-                    <Link
-                      to="/mi-perfil"
-                      className="d-block text-light py-3 link-offset-3"
-                    >
-                      Mi perfil
-                    </Link>
-                  </li>
-                ) : (
-                  <>
-                    <li className="border-bottom border-secondary">
-                      <Link
-                        to="/login"
-                        className="d-block text-light py-3 link-offset-3"
-                      >
-                        Ingresar
-                      </Link>
-                    </li>
-
-                    <li className="border-bottom border-secondary">
-                      <Link
-                        to="/registro"
-                        className="d-block text-light py-3 link-offset-3"
-                      >
-                        Registrarse
-                      </Link>
-                    </li>
-                  </>
-                )}
-              </ul>
-            </nav>
-          </div>
+                  <FooterLink to="/registro">
+                    Crear cuenta
+                  </FooterLink>
+                </>
+              )}
+            </ul>
+          </nav>
         </div>
 
-        <div className="border-top border-secondary py-4">
-          <div className="d-flex flex-column flex-md-row justify-content-between gap-2">
-            <p className="small text-light mb-0">
-              &copy; {currentYear} Funcode. Todos los derechos reservados.
-            </p>
+        <div className="fc-footer__wordmark" aria-hidden="true">
+          FUNCODE
+        </div>
 
-            <p className="small text-light mb-0">
-              Desarrollo web y sistemas a medida.
-            </p>
-          </div>
+        <div className="fc-footer__bottom">
+          <p>
+            © {currentYear} Funcode. Todos los derechos reservados.
+          </p>
+
+          <nav aria-label="Información legal">
+            <ul className="fc-footer__legal">
+              <li>
+                <Link to="/terminos">
+                  Términos y condiciones
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/privacidad">
+                  Privacidad
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

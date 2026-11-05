@@ -12,6 +12,8 @@ import ProfilePage from "./pages/ProfilePage";
 import CreatePostPage from "./pages/CreatePostPage";
 import EditPostPage from "./pages/EditPostPage";
 import AdminRoute from "./components/AdminRoute";
+import Terminos from "./pages/Terminos";
+import Privacidad from "./pages/Privacidad";
 
 function App() {
   return (
@@ -42,6 +44,16 @@ function App() {
               />
             </Route>
           </Route>
+
+          <Route
+            path="/terminos"
+            element={<Terminos />}
+          />
+
+          <Route
+            path="/privacidad"
+            element={<Privacidad />}
+          />
 
           <Route
             path="*"
