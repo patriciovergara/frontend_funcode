@@ -287,8 +287,6 @@ function PostDetailPage() {
             {formatPrice(post.price, post.price_type)}
           </p>
 
-          <p className="text-secondary">Publicado por: {post.user.name}</p>
-
           <h2 className="h5 mt-4">Descripcion</h2>
 
           <p style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>
