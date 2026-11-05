@@ -1,324 +1,344 @@
 # Funcode — Frontend
 
-Frontend de un marketplace desarrollado como proyecto académico de JavaScript Full Stack.
+Interfaz de Funcode, un marketplace de servicios digitales dirigido a emprendimientos y pequeñas empresas.
 
-La aplicación permite consultar un catálogo de publicaciones, acceder al detalle de un producto, registrar usuarios e iniciar sesión. Los usuarios autenticados pueden consultar su perfil y administrar sus propias publicaciones.
+El proyecto contempla páginas web, landing pages, catálogos digitales, tiendas online, sistemas de gestión e integraciones a medida.
+
+Desarrollado como proyecto final del programa JavaScript Full Stack.
 
 ## Estado del proyecto
 
-El frontend cuenta con un modo de demostración y una estructura de servicios preparada para integrar una API REST.
+El frontend dispone de una arquitectura de servicios para trabajar con datos de demostración o consumir una API REST.
 
-Los recorridos funcionales y las revisiones visuales descritos en este documento fueron comprobados manualmente en modo demostración. La integración con un backend real permanece pendiente de verificación.
+Actualmente se trabaja en:
+
+- Integración y validación con el backend.
+- Actualización de la identidad visual.
+- Navegación y control de acceso.
+- Documentación de términos y privacidad.
+- Preparación del despliegue.
+
+La existencia de servicios de conexión no implica que todos los recorridos estén verificados en producción.
+
+Los cambios locales deben guardarse, comprobarse y sincronizarse con GitHub antes de desplegar.
 
 ## Tecnologías
 
 - React.
+- Vite.
 - React Router DOM.
 - Context API.
-- Hooks de React y hooks personalizados.
+- Hooks personalizados.
 - JavaScript.
-- Vite.
-- CSS.
+- Bootstrap y CSS personalizado.
 - ESLint.
 
-Las dependencias y sus versiones se encuentran en los archivos `package.json` y `package-lock.json` del proyecto.
+Consultar `funcode/package.json` y `funcode/package-lock.json` para conocer las dependencias y versiones exactas.
 
 ## Funcionalidades
 
 ### Acceso público
 
 - Página principal.
-- Catálogo de publicaciones.
+- Catálogo de servicios.
 - Búsqueda por texto.
-- Filtrado por categoría.
+- Filtro por categoría.
 - Paginación.
 - Detalle de una publicación.
-- Registro de usuarios.
-- Inicio de sesión.
+- Registro e inicio de sesión.
+- Páginas de términos y condiciones y privacidad, cuando sus rutas estén incorporadas.
 
-### Acceso con sesión iniciada
+### Acceso autenticado
 
 - Consulta del perfil.
-- Consulta de publicaciones propias.
-- Creación de publicaciones.
-- Edición de publicaciones propias.
-- Eliminación de publicaciones propias.
-- Cierre de sesión.
+- Navegación según el estado de sesión.
+- Funcionalidades adicionales según los permisos implementados.
 
-### Interfaz
+### Administración del catálogo
 
-- Navegación adaptada al estado de sesión.
-- Validación de formularios.
-- Mensajes informativos sobre el modo de demostración.
-- Diseño adaptable a móvil, tablet y escritorio.
+El objetivo comercial es que Funcode administre las publicaciones.
 
-## Organización del repositorio
+Los clientes no deben obtener permisos para crear, editar o eliminar servicios por el solo hecho de registrarse.
 
-El repositorio contiene una carpeta raíz de documentación y configuración, y una carpeta `funcode/` que contiene la aplicación React.
+La restricción debe comprobarse también en el backend. Ocultar botones o proteger rutas de React no sustituye la autorización de la API.
+
+## Identidad visual
+
+El rediseño utiliza:
+
+- Fondo azul oscuro.
+- Acentos celestes y violetas.
+- Botones con degradado.
+- Bordes sutiles.
+- Navegación adaptable.
+- Animaciones decorativas moderadas.
+- Estilos de foco y preferencias de movimiento reducido.
+
+Componentes del rediseño:
+
+- `Navbar.jsx` y `Navbar.css`.
+- `Footer.jsx` y `Footer.css`.
+
+La versión propuesta del navbar conserva el acceso al perfil, pero la integración del cierre de sesión y las opciones de administrador debe contrastarse con la implementación existente antes de publicar.
+
+## Organización general
+
+La aplicación React está dentro de `funcode/`.
 
 ```text
 frontend_funcode/
-├── .env.example
-├── .gitignore
 ├── README.md
+├── .gitignore
 ├── api-contract-updates.md
-├── package-lock.json
-├── package.json
 └── funcode/
-    ├── .gitignore
-    ├── eslint.config.js
-    ├── index.html
-    ├── package-lock.json
     ├── package.json
+    ├── package-lock.json
     ├── vite.config.js
     ├── public/
-    │   ├── favicon.svg
-    │   └── icons.svg
     └── src/
         ├── assets/
         ├── components/
-        │   ├── Footer.jsx
-        │   ├── Navbar.jsx
-        │   ├── PostCard.jsx
-        │   └── ProtectedRoute.jsx
         ├── context/
-        │   ├── AuthContext.js
-        │   ├── AuthProvider.jsx
-        │   ├── PostsContext.js
-        │   └── PostsProvider.jsx
         ├── data/
-        │   └── mockData.js
         ├── hooks/
-        │   ├── useAuth.js
-        │   ├── useCatalog.js
-        │   ├── useCurrentUser.js
-        │   ├── useMyPosts.js
-        │   ├── usePost.js
-        │   └── usePosts.js
         ├── pages/
-        │   ├── CreatePostPage.jsx
-        │   ├── EditPostPage.jsx
-        │   ├── HomePage.jsx
-        │   ├── LoginPage.jsx
-        │   ├── PlaceholderPage.jsx
-        │   ├── PostDetailPage.jsx
-        │   ├── ProductsPage.jsx
-        │   ├── ProfilePage.jsx
-        │   └── RegisterPage.jsx
         ├── services/
-        │   ├── apiClient.js
-        │   ├── apiConfig.js
-        │   ├── authService.js
-        │   └── postsApi.js
         ├── utils/
-        │   └── formatPrice.js
-        ├── App.css
         ├── App.jsx
-        ├── index.css
         └── main.jsx
 ```
 
-La carpeta de destino puede tener un nombre distinto si se elige otro al clonar el repositorio.
+La ubicación de los archivos de entorno debe coincidir con la configuración de Vite del proyecto.
 
-## Requisitos previos
+## Requisitos
 
 - Git.
-- Node.js y npm compatibles con las dependencias de la aplicación.
-
-Antes de instalar, revisar las versiones declaradas en `funcode/package.json` y los requisitos de la versión de Vite utilizada.
+- Node.js compatible con la versión instalada de Vite.
+- npm.
+- Backend disponible para trabajar en modo API.
 
 ## Instalación
 
-Clonar el repositorio:
-
 ```bash
 git clone [https://github.com/patriciovergara/frontend_funcode.git](https://github.com/patriciovergara/frontend_funcode.git)
-```
-
-Entrar en la carpeta de la aplicación React:
-
-```bash
 cd frontend_funcode/funcode
+npm ci
 ```
 
-Instalar las dependencias:
+Si se modifican dependencias, actualizar también el archivo de bloqueo correspondiente.
 
-```bash
-npm install
+## Configuración de entorno
+
+Consultar:
+
+- `.env.example`.
+- `funcode/vite.config.js`.
+- `funcode/src/services/apiConfig.js`.
+
+Definir las variables en el archivo de entorno que cargue Vite.
+
+### Modo demostración
+
+```env
+VITE_DATA_MODE=demo
 ```
 
-## Ejecución en desarrollo
+### Modo API local
 
-Desde la carpeta `funcode/`, ejecutar:
+```env
+VITE_DATA_MODE=api
+VITE_API_BASE_URL=http://localhost:3000/api/v1
+```
+
+La URL debe incluir el prefijo `/api/v1`.
+
+Si no se define `VITE_DATA_MODE`, la configuración actual utiliza `demo`.
+
+Si no se define `VITE_API_BASE_URL`, la configuración actual utiliza la API local.
+
+Para producción, ambas variables deben configurarse explícitamente con los valores del entorno correspondiente.
+
+Las variables `VITE_*` forman parte del código enviado al navegador: no deben contener contraseñas, secretos JWT ni credenciales de PostgreSQL.
+
+Reiniciar Vite después de modificar los archivos de entorno.
+
+## Desarrollo
+
+Desde `funcode/`:
 
 ```bash
 npm run dev
 ```
 
-Abrir la dirección que indique la terminal. Se debe utilizar la URL efectiva del servidor, ya que el puerto disponible puede variar.
+Abrir la dirección indicada por la terminal.
 
-Los scripts disponibles se pueden consultar con:
+## Compilación
+
+```bash
+npm run build
+```
+
+La compilación debe completarse sin errores antes del despliegue.
+
+Consultar los scripts disponibles:
 
 ```bash
 npm run
 ```
 
-## Configuración de datos
+Si está definido el script de lint:
 
-La aplicación contempla dos modos de funcionamiento:
-
-| Modo | Propósito |
-|---|---|
-| `demo` | Probar la interfaz y los recorridos con datos de demostración. |
-| `api` | Consumir los servicios de un backend compatible con el contrato del proyecto. |
-
-La variable utilizada para seleccionar el modo es:
-
-```dotenv
-VITE_DATA_MODE=demo
+```bash
+npm run lint
 ```
 
-Para seleccionar el modo de integración:
+No se debe confundir una compilación exitosa con una prueba completa de integración.
 
-```dotenv
-VITE_DATA_MODE=api
-```
-
-Cambiar el modo no garantiza por sí solo una conexión funcional. El backend debe estar disponible y la configuración de los servicios debe coincidir con su contrato.
-
-Antes de crear o modificar archivos de entorno, revisar:
-
-- `.env.example`, en la raíz del repositorio.
-- `funcode/vite.config.js`.
-- `funcode/src/services/apiConfig.js`.
-
-Estos archivos deben utilizarse como referencia para determinar los valores y la ubicación de la configuración. No se presupone en este documento un nombre de variable para la URL base del backend.
-
-## Arquitectura del frontend
-
-La aplicación organiza el código por responsabilidades.
+## Arquitectura
 
 | Carpeta | Responsabilidad |
 |---|---|
-| `components/` | Elementos de interfaz compartidos entre distintas vistas. |
-| `pages/` | Pantallas de la aplicación. |
-| `context/` | Contextos y proveedores de estado compartido. |
-| `hooks/` | Lógica reutilizable y acceso a los datos utilizados por las vistas. |
-| `services/` | Configuración y comunicación con los servicios de datos. |
+| `components/` | Componentes compartidos y navegación. |
+| `pages/` | Vistas de la aplicación. |
+| `context/` | Estado compartido y proveedores. |
+| `hooks/` | Lógica reutilizable. |
+| `services/` | Comunicación con la API y configuración de datos. |
 | `data/` | Datos de demostración. |
 | `utils/` | Funciones auxiliares. |
-| `assets/` | Recursos visuales utilizados por la aplicación. |
+| `assets/` | Recursos visuales. |
 
-### Componentes
+### Servicios de datos
 
-- `Navbar.jsx`: navegación principal.
-- `Footer.jsx`: pie de página.
-- `PostCard.jsx`: presentación de una publicación en el catálogo.
-- `ProtectedRoute.jsx`: control de acceso a vistas que requieren sesión.
+- `apiConfig.js`: modo de datos y URL base.
+- `apiClient.js`: cliente HTTP.
+- `authService.js`: operaciones de autenticación.
+- `postsApi.js`: operaciones de publicaciones.
 
-### Estado compartido
+Consultar la implementación y `api-contract-updates.md` antes de modificar endpoints o formatos de respuesta.
 
-La estructura separa los contextos de sus proveedores:
+## Navegación
 
-- `AuthContext.js` y `AuthProvider.jsx`: estado relacionado con la autenticación.
-- `PostsContext.js` y `PostsProvider.jsx`: estado relacionado con las publicaciones.
+Las rutas se definen en `src/App.jsx`.
 
-Los hooks personalizados permiten reutilizar lógica sin repetirla en cada pantalla.
+Rutas utilizadas por los componentes recientes:
 
-### Servicios
-
-La comunicación de datos se organiza en archivos separados:
-
-- `apiConfig.js`.
-- `apiClient.js`.
-- `authService.js`.
-- `postsApi.js`.
-
-Los endpoints, métodos HTTP y formatos de datos deben mantenerse alineados con la implementación de estos servicios y con el contrato del backend.
-
-## Navegación y acceso
-
-La navegación utiliza React Router. La definición de las rutas se encuentra en el código de la aplicación, principalmente en `funcode/src/App.jsx`.
-
-| Vista | Acceso |
+| Ruta | Propósito |
 |---|---|
-| Inicio | Público |
-| Catálogo de publicaciones | Público |
-| Detalle de publicación | Público |
-| Registro | Público |
-| Inicio de sesión | Público |
-| Perfil | Requiere sesión |
-| Crear publicación | Requiere sesión |
-| Editar publicación propia | Requiere sesión |
+| `/` | Inicio. |
+| `/productos` | Catálogo. |
+| `/login` | Inicio de sesión. |
+| `/registro` | Registro. |
+| `/mi-perfil` | Perfil autenticado. |
+| `/terminos` | Términos y condiciones. |
+| `/privacidad` | Política de privacidad. |
 
-Los nombres de las vistas no deben confundirse con los endpoints de la API.
+Verificar que todas estén efectivamente registradas en `App.jsx`.
 
-## Validaciones y mensajes
-
-Se revisaron los formularios de registro, inicio de sesión, creación y edición de publicaciones.
-
-La interfaz contempla mensajes para orientar al usuario ante datos incompletos o inválidos y avisos que identifican el funcionamiento en modo demostración.
-
-## Pruebas manuales
-
-### Recorrido funcional
-
-Se comprobó el siguiente recorrido en modo demostración:
-
-1. Acceder sin sesión al inicio, al catálogo y al detalle.
-2. Registrar una cuenta de prueba.
-3. Cerrar sesión.
-4. Iniciar sesión con la cuenta creada.
-5. Crear una publicación con imagen y categoría.
-6. Verificar su aparición en las publicaciones del usuario.
-7. Editar la publicación y comprobar los cambios.
-8. Eliminar la publicación y comprobar que deja de aparecer.
-9. Cerrar sesión y comprobar la actualización de las opciones de navegación.
-
-Resultado reportado: recorrido completo correcto.
-
-### Revisión adaptable
-
-| Vista de prueba | Dimensiones | Resultado reportado |
-|---|---|---|
-| Móvil | 375 × 812 px | Sin problemas visuales |
-| Tablet | 768 × 1024 px | Sin problemas visuales |
-| Escritorio | 1280 × 800 px | Sin problemas visuales |
-
-Se revisaron las pantallas de inicio, catálogo, detalle, registro, inicio de sesión, perfil, creación y edición.
-
-Estas comprobaciones son manuales y no equivalen a una suite de pruebas automatizadas ni a una validación con un backend real.
-
-## Documentación del contrato
-
-El repositorio incluye el archivo:
+Los enlaces de categorías utilizan:
 
 ```text
-api-contract-updates.md
+/productos?category=1
+/productos?category=2
+/productos?category=3
 ```
 
-Este archivo debe consultarse junto con los servicios del frontend para revisar los ajustes documentados del contrato de datos.
+Los identificadores deben coincidir con las categorías de la base de datos.
 
-## Archivos excluidos del repositorio
+## Documentación legal
 
-Los archivos `.gitignore` excluyen las dependencias instaladas, las compilaciones y los archivos locales de entorno.
+Componentes previstos:
 
-No se deben publicar:
+- `LegalLayout.jsx`.
+- `Terminos.jsx`.
+- `Privacidad.jsx`.
+- Archivo de configuración `legal.js`.
 
+En la estructura local utilizada durante el desarrollo, `legal.js` se ubicó en:
+
+```text
+src/components/config/legal.js
+```
+
+Por tanto, desde `LegalLayout.jsx` se importa así:
+
+```js
+import { legalConfig } from "./config/legal.js";
+```
+
+Antes de usar el sitio comercialmente:
+
+- Completar titular o razón social.
+- Completar RUT y domicilio.
+- Configurar un correo real.
+- Contrastar la política con los tratamientos y proveedores efectivos.
+- Implementar el registro de las autorizaciones que correspondan.
+- Revisar los documentos ante cambios legales.
+
+Mostrar los documentos no demuestra por sí solo cumplimiento legal ni registra consentimiento.
+
+## Verificación antes de desplegar
+
+- [ ] Compilación correcta.
+- [ ] Revisión de lint.
+- [ ] Modo API habilitado.
+- [ ] URL pública del backend configurada.
+- [ ] Registro e inicio de sesión verificados.
+- [ ] Cierre de sesión disponible y probado.
+- [ ] Perfil protegido.
+- [ ] Permisos de administración comprobados.
+- [ ] Catálogo, filtros y detalle conectados a datos reales.
+- [ ] Flujo de cotización verificado, si está habilitado.
+- [ ] Imágenes disponibles mediante URLs públicas.
+- [ ] Páginas legales completas.
+- [ ] Revisión en móvil y escritorio.
+- [ ] Recarga de rutas internas comprobada.
+- [ ] Cambios sincronizados con GitHub.
+
+## Despliegue
+
+Arquitectura propuesta, pendiente de configuración y validación:
+
+- Frontend: Cloudflare Pages.
+- Backend: Render.
+- Base de datos: PostgreSQL remoto.
+
+El directorio de trabajo y la salida de compilación deben configurarse según la estructura del repositorio.
+
+Para esta aplicación Vite, comprobar la salida `funcode/dist` y cualquier personalización de `build.outDir`.
+
+El alojamiento debe resolver correctamente las rutas de React al abrirlas directamente.
+
+No utilizar `npm run dev` como servidor de producción.
+
+## Seguridad
+
+No versionar:
+
+- `.env` con configuración privada.
+- Contraseñas.
+- Tokens.
+- Credenciales de PostgreSQL.
+- Secretos JWT.
 - `node_modules/`.
-- `dist/`.
-- Archivos `.env` con configuración local.
-- Contraseñas, tokens o credenciales.
+- Compilaciones locales innecesarias.
 
-El archivo `.env.example` se conserva como referencia de configuración y no debe contener secretos.
+Conservar ejemplos de configuración sin secretos.
 
-## Alcance y limitaciones
+## Pruebas y limitaciones
 
-- Las pruebas funcionales reportadas corresponden al modo demostración.
-- La estructura para integrar la API está preparada, pero la conexión con un backend real requiere verificación.
-- Este documento no afirma que existan pruebas automatizadas o un despliegue público.
-- La documentación debe actualizarse cuando cambien las rutas, los servicios o la configuración del proyecto.
+El README anterior documentaba recorridos manuales en modo demostración.
 
-## Contexto académico
+Esos resultados no acreditan el funcionamiento de la versión actual con la API ni del despliegue público.
 
-Proyecto desarrollado para el Hito 2: Desarrollo Frontend del programa JavaScript Full Stack.
+Registrar por separado:
+
+- Pruebas locales.
+- Pruebas con backend real.
+- Pruebas posteriores al despliegue.
+- Incidencias y correcciones.
+
+## Repositorio relacionado
+
+Backend:
+
+https://github.com/patriciovergara/backend-funcode
