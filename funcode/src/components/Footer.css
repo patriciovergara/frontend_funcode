@@ -1,3 +1,7 @@
+/* =========================================
+   BASE Y FONDO
+   ========================================= */
+
 .fc-footer {
   --fc-bg: #090e19;
   --fc-text: #f4f7ff;
@@ -66,6 +70,10 @@
   margin-inline: auto;
 }
 
+/* =========================================
+   LLAMADA PRINCIPAL
+   ========================================= */
+
 .fc-footer__cta {
   display: flex;
   align-items: center;
@@ -122,6 +130,10 @@
   line-height: 1.8;
 }
 
+/* =========================================
+   BOTÓN PRINCIPAL
+   ========================================= */
+
 .fc-footer__button {
   display: inline-flex;
   flex-shrink: 0;
@@ -155,9 +167,13 @@
   transition: transform 220ms ease;
 }
 
+/* =========================================
+   COLUMNAS Y MARCA
+   ========================================= */
+
 .fc-footer__columns {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
   gap: 72px;
   padding-block: 56px 48px;
 }
@@ -179,6 +195,7 @@
 
 .fc-footer__brand-symbol {
   display: grid;
+  flex-shrink: 0;
   width: 42px;
   height: 42px;
   place-items: center;
@@ -217,6 +234,10 @@
   text-transform: uppercase;
 }
 
+/* =========================================
+   ENLACES
+   ========================================= */
+
 .fc-footer__list,
 .fc-footer__legal {
   margin: 0;
@@ -246,6 +267,10 @@
     color 200ms ease,
     transform 200ms ease;
 }
+
+/* =========================================
+   MARCA DECORATIVA Y FRANJA LEGAL
+   ========================================= */
 
 .fc-footer__wordmark {
   overflow: hidden;
@@ -297,6 +322,10 @@
   text-decoration: underline;
 }
 
+/* =========================================
+   INTERACCIÓN Y ANIMACIÓN
+   ========================================= */
+
 .fc-footer a:focus-visible {
   outline: 2px solid var(--fc-accent);
   outline-offset: 5px;
@@ -334,6 +363,10 @@
   }
 }
 
+/* =========================================
+   TABLET
+   ========================================= */
+
 @media (max-width: 991px) {
   .fc-footer__cta {
     align-items: flex-start;
@@ -357,6 +390,10 @@
     gap: 12px;
   }
 }
+
+/* =========================================
+   CELULAR
+   ========================================= */
 
 @media (max-width: 575px) {
   .fc-footer__container {
@@ -392,6 +429,10 @@
   }
 }
 
+/* =========================================
+   PREFERENCIAS DE ACCESIBILIDAD
+   ========================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .fc-footer__glow {
     animation: none;
@@ -401,5 +442,17 @@
   .fc-footer *::before,
   .fc-footer *::after {
     transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .fc-footer__title span {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .fc-footer__glow,
+  .fc-footer__wordmark {
+    display: none;
   }
 }

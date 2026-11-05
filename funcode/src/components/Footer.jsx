@@ -63,20 +63,28 @@ function Footer() {
 
   return (
     <footer className="fc-footer">
+      {/* Iluminación decorativa del fondo */}
       <div className="fc-footer__glow" aria-hidden="true" />
 
       <div className="fc-footer__container">
+        {/* Llamada principal */}
         <section
           className="fc-footer__cta"
           aria-labelledby="fc-footer-title"
         >
           <div>
             <p className="fc-footer__eyebrow">
-              <span className="fc-footer__dot" aria-hidden="true" />
+              <span
+                className="fc-footer__dot"
+                aria-hidden="true"
+              />
               Diseño, desarrollo y tecnología
             </p>
 
-            <h2 id="fc-footer-title" className="fc-footer__title">
+            <h2
+              id="fc-footer-title"
+              className="fc-footer__title"
+            >
               Tu siguiente paso,
               <br />
               <span>en digital.</span>
@@ -88,7 +96,10 @@ function Footer() {
             </p>
           </div>
 
-          <Link to="/productos" className="fc-footer__button">
+          <Link
+            to="/productos"
+            className="fc-footer__button"
+          >
             <span>Explorar servicios</span>
 
             <span className="fc-footer__button-icon">
@@ -97,6 +108,7 @@ function Footer() {
           </Link>
         </section>
 
+        {/* Marca y navegación */}
         <div className="fc-footer__columns">
           <div className="fc-footer__brand-column">
             <Link
@@ -104,12 +116,18 @@ function Footer() {
               className="fc-footer__brand"
               aria-label="Funcode: ir al inicio"
             >
-              <span className="fc-footer__brand-symbol" aria-hidden="true">
+              <span
+                className="fc-footer__brand-symbol"
+                aria-hidden="true"
+              >
                 {"</>"}
               </span>
 
               <span>
-                Fun<span className="fc-footer__brand-accent">code</span>
+                Fun
+                <span className="fc-footer__brand-accent">
+                  code
+                </span>
               </span>
             </Link>
 
@@ -133,7 +151,10 @@ function Footer() {
 
             <ul className="fc-footer__list">
               {solutions.map((solution) => (
-                <FooterLink key={solution.to} to={solution.to}>
+                <FooterLink
+                  key={solution.to}
+                  to={solution.to}
+                >
                   {solution.label}
                 </FooterLink>
               ))}
@@ -149,7 +170,9 @@ function Footer() {
             </h3>
 
             <ul className="fc-footer__list">
-              <FooterLink to="/">Inicio</FooterLink>
+              <FooterLink to="/">
+                Inicio
+              </FooterLink>
 
               <FooterLink to="/productos">
                 Todos los servicios
@@ -161,7 +184,9 @@ function Footer() {
                 </FooterLink>
               ) : (
                 <>
-                  <FooterLink to="/login">Ingresar</FooterLink>
+                  <FooterLink to="/login">
+                    Ingresar
+                  </FooterLink>
 
                   <FooterLink to="/registro">
                     Crear cuenta
@@ -172,13 +197,18 @@ function Footer() {
           </nav>
         </div>
 
-        <div className="fc-footer__wordmark" aria-hidden="true">
+        {/* Marca de fondo decorativa */}
+        <div
+          className="fc-footer__wordmark"
+          aria-hidden="true"
+        >
           FUNCODE
         </div>
 
+        {/* Copyright y documentos legales */}
         <div className="fc-footer__bottom">
           <p>
-            © {currentYear} Funcode. Todos los derechos reservados.
+            &copy; {currentYear} Funcode. Todos los derechos reservados.
           </p>
 
           <nav aria-label="Información legal">
@@ -191,7 +221,7 @@ function Footer() {
 
               <li>
                 <Link to="/privacidad">
-                  Privacidad
+                  Política de privacidad
                 </Link>
               </li>
             </ul>
