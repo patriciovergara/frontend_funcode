@@ -7,7 +7,7 @@ const services = [
     description:
       "Creamos landing pages, sitios corporativos y páginas autoadministrables para presentar tu negocio y conectar con tus clientes.",
     examples:
-      "Landing pages desde $39.990 CLP. Sitios con administración y funciones adicionales sujetos a cotización.",
+      "Landing pages desde $129.990. Sitios con administración y funciones adicionales sujetos a cotización.",
   },
   {
     id: 2,
@@ -97,7 +97,7 @@ function HomePage() {
             </h2>
 
             <p className="display-6 fw-bold mb-3">
-              Desde $39.990 CLP
+              Desde $129.990 CLP
             </p>
 
             <p className="mb-4">
