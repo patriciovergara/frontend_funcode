@@ -248,10 +248,8 @@ function CreatePostPage() {
                 />
 
                 <p className="form-text">
-                  <p className="form-text">
-                    Usa /assets/servicios/nombre-del-archivo.webp o una URL
-                    publica.
-                  </p>
+                  Usa /assets/servicios/nombre-del-archivo.webp o una URL
+                  publica.
                 </p>
               </div>
             </div>
