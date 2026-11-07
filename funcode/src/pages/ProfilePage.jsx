@@ -452,11 +452,17 @@ function ProfilePage() {
             <Feedback>{profileError}</Feedback>
           ) : profileUser ? (
             <>
-              <h2 className="tw:mb-3 tw:break-words tw:text-xl tw:font-semibold tw:text-funcode-text">
+              <h2
+                className="tw:mb-3 .tw\:break-words {
+                overflow-wrap: break-word; tw:text-xl tw:font-semibold tw:text-funcode-text;"
+              >
                 {profileUser.name}
               </h2>
 
-              <p className="tw:mb-5 tw:text-sm tw:text-funcode-muted tw:[overflow-wrap:anywhere]">
+              <p
+                className="tw:mb-5 tw:text-sm tw:text-funcode-muted .tw\:\[overflow-wrap\:anywhere\] {
+                overflow-wrap: anywhere;}"
+              >
                 {profileUser.email}
               </p>
             </>
