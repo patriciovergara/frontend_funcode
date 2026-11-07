@@ -213,9 +213,9 @@ function ProductsPage() {
               tw:text-base tw:leading-relaxed tw:text-funcode-muted
             "
           >
-            Páginas web, catálogos digitales y sistemas a medida.
-            Explora las soluciones de Funcode y encuentra el punto
-            de partida para tu proyecto.
+            Páginas web, catálogos digitales y sistemas a medida. Explora las
+            soluciones de Funcode y encuentra el punto de partida para tu
+            proyecto.
           </p>
         </div>
       </header>
@@ -259,9 +259,7 @@ function ProductsPage() {
                 placeholder="Busca una landing page, un CRM o un catálogo"
                 value={search}
                 maxLength={150}
-                onChange={(event) =>
-                  updateFilter("search", event.target.value)
-                }
+                onChange={(event) => updateFilter("search", event.target.value)}
               />
             </div>
           </div>
@@ -279,11 +277,9 @@ function ProductsPage() {
 
             <select
               id="catalog-category"
-              className={`${fieldClass} tw:[color-scheme:dark]`}
+              className={`${fieldClass} tw:color-scheme:dark]`}
               value={category}
-              onChange={(event) =>
-                updateFilter("category", event.target.value)
-              }
+              onChange={(event) => updateFilter("category", event.target.value)}
             >
               <option value="">Todas las categorías</option>
 
@@ -309,8 +305,7 @@ function ProductsPage() {
             <p className="tw:m-0 tw:text-sm tw:text-funcode-muted">
               <span className="tw:font-semibold tw:text-funcode-text">
                 {pagination.total}
-              </span>
-              {" "}
+              </span>{" "}
               {pagination.total === 1
                 ? "servicio encontrado"
                 : "servicios encontrados"}
@@ -319,11 +314,7 @@ function ProductsPage() {
         </div>
 
         {hasFilters && (
-          <button
-            type="button"
-            className={buttonClass}
-            onClick={clearFilters}
-          >
+          <button type="button" className={buttonClass} onClick={clearFilters}>
             Limpiar filtros
           </button>
         )}
@@ -434,8 +425,8 @@ function ProductsPage() {
                   Página{" "}
                   <span className="tw:font-medium tw:text-funcode-text">
                     {page}
-                  </span>
-                  {" "}de {totalPages}
+                  </span>{" "}
+                  de {totalPages}
                 </span>
 
                 <button
@@ -469,10 +460,10 @@ function ProductsPage() {
         </h2>
 
         <p className="tw:m-0 tw:max-w-4xl tw:text-xs tw:leading-relaxed tw:text-funcode-muted">
-          El alcance, los entregables y los plazos se definen en cada
-          propuesta comercial. Los costos de dominio, alojamiento,
-          licencias, mantenimiento y servicios de terceros se
-          especifican por separado cuando correspondan.
+          El alcance, los entregables y los plazos se definen en cada propuesta
+          comercial. Los costos de dominio, alojamiento, licencias,
+          mantenimiento y servicios de terceros se especifican por separado
+          cuando correspondan.
         </p>
       </aside>
     </section>

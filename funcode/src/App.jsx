@@ -16,16 +16,18 @@ import AdminRoute from "./components/AdminRoute";
 import Terminos from "./pages/Terminos";
 import Privacidad from "./pages/Privacidad";
 
-
 function App() {
   const { pathname } = useLocation();
-
-  const usesDarkLayout = pathname === "/" || pathname === "/productos";
+  
+  const usesDarkLayout =
+    pathname === "/" ||
+    pathname === "/productos" ||
+    /^\/productos\/[^/]+\/?$/.test(pathname);
 
   return (
     <div className="d-flex flex-column min-vh-100">
       <ScrollToTop />
-      
+
       <Navbar />
 
       <main
