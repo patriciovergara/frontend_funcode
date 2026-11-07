@@ -18,10 +18,12 @@ import Privacidad from "./pages/Privacidad";
 
 function App() {
   const { pathname } = useLocation();
-  
+
   const usesDarkLayout =
     pathname === "/" ||
     pathname === "/productos" ||
+    pathname === "/login" ||
+    pathname === "/registro" ||
     /^\/productos\/[^/]+\/?$/.test(pathname);
 
   return (

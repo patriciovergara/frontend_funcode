@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import AuthLayout from "../components/AuthLayout.jsx";
+import { authStyles } from "../styles/authStyles.js";
 import useAuth from "../hooks/useAuth";
 import { loginUser } from "../services/authService";
 import { IS_DEMO_MODE } from "../services/apiConfig";
@@ -16,6 +18,11 @@ function LoginPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
+
     setError("");
 
     if (!email.trim() || !password) {
@@ -39,7 +46,9 @@ function LoginPage() {
       navigate("/mi-perfil", { replace: true });
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "No fue posible iniciar sesión.",
+        err instanceof Error
+          ? err.message
+          : "No fue posible iniciar sesión.",
       );
     } finally {
       setIsSubmitting(false);
@@ -47,89 +56,111 @@ function LoginPage() {
   }
 
   return (
-    <section>
-      <h1 className="mb-4">Iniciar sesión</h1>
+    <AuthLayout
+      eyebrow="Tu espacio en Funcode"
+      title={
+        <>
+          Tu próximo paso,
+          <span className="tw:block tw:text-funcode-accent">
+            empieza aquí.
+          </span>
+        </>
+      }
+      description="Accede a tu cuenta y continúa explorando soluciones digitales para tu negocio."
+      panelTitle="Iniciar sesión"
+      panelDescription="Ingresa con el correo y la contraseña de tu cuenta."
+      footer={
+        <p className="tw:m-0">
+          ¿No tienes cuenta?{" "}
+          <Link to="/registro" className={authStyles.link}>
+            Crear cuenta
+          </Link>
+        </p>
+      }
+    >
+      {IS_DEMO_MODE && (
+        <div className={`${authStyles.warning} tw:mb-6`}>
+          <p className="tw:mb-3">
+            Modo demostración: utiliza solamente esta cuenta ficticia.
+          </p>
 
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-8 col-lg-6">
-          <div className="card bg-light">
-            <div className="card-body p-4">
-              {IS_DEMO_MODE && (
-                <div className="alert alert-warning">
-                  <p className="mb-2">
-                    Modo demostración: utiliza solamente esta cuenta ficticia.
-                  </p>
-
-                  <p className="mb-0">
-                    Correo: <code>usuario@ejemplo.com</code>
-                    <br />
-                    Contraseña: <code>Demo123!</code>
-                  </p>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="login-email" className="form-label">
-                    Correo electrónico
-                  </label>
-
-                  <input
-                    id="login-email"
-                    type="email"
-                    className="form-control"
-                    placeholder="nombre@ejemplo.com"
-                    autoComplete="username"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    disabled={isSubmitting}
-                    required
-                  />
-                </div>
-
-                <div className="mb-4">
-                  <label htmlFor="login-password" className="form-label">
-                    Contraseña
-                  </label>
-
-                  <input
-                    id="login-password"
-                    type="password"
-                    className="form-control"
-                    autoComplete="current-password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    disabled={isSubmitting}
-                    required
-                  />
-                </div>
-
-                {error && (
-                  <p className="alert alert-danger" role="alert">
-                    {error}
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  className="btn btn-dark"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Ingresando..." : "Ingresar"}
-                </button>
-              </form>
-
-              <p className="mt-4 mb-0">
-                ¿No tienes cuenta?{" "}
-                <Link to="/registro" className="text-dark">
-                  Regístrate
-                </Link>
-              </p>
-            </div>
-          </div>
+          <p className="tw:m-0">
+            Correo:{" "}
+            <span className="tw:break-all tw:font-mono">
+              usuario@ejemplo.com
+            </span>
+            <br />
+            Contraseña:{" "}
+            <span className="tw:font-mono">Demo123!</span>
+          </p>
         </div>
-      </div>
-    </section>
+      )}
+
+      <form onSubmit={handleSubmit} aria-busy={isSubmitting}>
+        <div className="tw:mb-5">
+          <label htmlFor="login-email" className={authStyles.label}>
+            Correo electrónico
+          </label>
+
+          <input
+            id="login-email"
+            name="email"
+            type="email"
+            className={authStyles.field}
+            placeholder="nombre@ejemplo.com"
+            autoComplete="username"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+        </div>
+
+        <div className="tw:mb-6">
+          <label htmlFor="login-password" className={authStyles.label}>
+            Contraseña
+          </label>
+
+          <input
+            id="login-password"
+            name="password"
+            type="password"
+            className={authStyles.field}
+            autoComplete="current-password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            disabled={isSubmitting}
+            required
+          />
+        </div>
+
+        {error && (
+          <p className={`${authStyles.error} tw:mb-5`} role="alert">
+            {error}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          className={authStyles.button}
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Ingresando..." : "Ingresar a mi cuenta"}
+        </button>
+      </form>
+
+      <p className="tw:mt-5 tw:mb-0 tw:text-xs tw:leading-relaxed tw:text-funcode-muted">
+        Puedes consultar la{" "}
+        <Link to="/privacidad" className={authStyles.link}>
+          Política de privacidad
+        </Link>
+        {" "}y los{" "}
+        <Link to="/terminos" className={authStyles.link}>
+          Términos y condiciones
+        </Link>
+        .
+      </p>
+    </AuthLayout>
   );
 }
 
