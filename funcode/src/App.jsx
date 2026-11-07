@@ -26,6 +26,7 @@ function App() {
     pathname === "/registro" ||
     pathname === "/mi-perfil" ||
     pathname === "/publicaciones/nueva" ||
+    /^\/publicaciones\/[^/]+\/editar\/?$/.test(pathname) ||
     /^\/productos\/[^/]+\/?$/.test(pathname);
 
   return (
