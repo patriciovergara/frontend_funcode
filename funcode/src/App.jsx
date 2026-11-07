@@ -1,5 +1,6 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 
+import ScrollToTop from "./components/ScrollToTop";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -15,12 +16,25 @@ import AdminRoute from "./components/AdminRoute";
 import Terminos from "./pages/Terminos";
 import Privacidad from "./pages/Privacidad";
 
+
 function App() {
+  const { pathname } = useLocation();
+
+  const usesDarkLayout = pathname === "/" || pathname === "/productos";
+
   return (
     <div className="d-flex flex-column min-vh-100">
+      <ScrollToTop />
+      
       <Navbar />
 
-      <main className="container py-5 flex-grow-1">
+      <main
+        className={
+          usesDarkLayout
+            ? "flex-grow-1 tw:min-w-0 tw:bg-funcode-bg"
+            : "container py-5 flex-grow-1"
+        }
+      >
         <Routes>
           <Route path="/" element={<HomePage />} />
 
@@ -45,15 +59,9 @@ function App() {
             </Route>
           </Route>
 
-          <Route
-            path="/terminos"
-            element={<Terminos />}
-          />
+          <Route path="/terminos" element={<Terminos />} />
 
-          <Route
-            path="/privacidad"
-            element={<Privacidad />}
-          />
+          <Route path="/privacidad" element={<Privacidad />} />
 
           <Route
             path="*"

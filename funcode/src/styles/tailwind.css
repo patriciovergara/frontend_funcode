@@ -1,0 +1,65 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme) prefix(tw);
+@import "tailwindcss/utilities.css" layer(utilities) prefix(tw);
+
+/*
+  Migración gradual:
+  - Bootstrap sigue activo.
+  - No cargamos Preflight todavía.
+  - Las utilidades nuevas utilizan el prefijo tw:.
+*/
+
+@theme {
+  /* Colores de marca */
+  --color-funcode-bg: #090e19;
+  --color-funcode-surface: #111a2b;
+  --color-funcode-surface-raised: #182338;
+
+  --color-funcode-accent: #7dd3fc;
+  --color-funcode-violet: #b8a3ff;
+
+  --color-funcode-text: #f4f7ff;
+  --color-funcode-muted: #b2bdd0;
+  --color-funcode-line: #2c3b52;
+
+  /* Estados */
+  --color-funcode-success: #86efac;
+  --color-funcode-warning: #fcd34d;
+  --color-funcode-danger: #fda4af;
+
+  /* Tipografía: sin descargas externas por ahora */
+  --font-sans:
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  --font-mono:
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  /* Sombras compartidas */
+  --shadow-funcode-card:
+    0 16px 48px rgb(0 0 0 / 0.18);
+
+  --shadow-funcode-glow:
+    0 12px 40px rgb(125 211 252 / 0.14);
+
+  /* Movimiento compartido */
+  --animate-funcode-enter:
+    funcode-enter 650ms ease-out both;
+
+  @keyframes funcode-enter {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
