@@ -43,6 +43,21 @@ const primaryButton = `
   tw:motion-reduce:transition-none
 `;
 
+const iconButtonClass = `
+  tw:inline-flex tw:h-11 tw:w-11 tw:shrink-0
+  tw:items-center tw:justify-center
+  tw:rounded-xl!
+  tw:border tw:border-solid tw:border-funcode-line
+  tw:bg-funcode-surface
+  tw:p-0! tw:no-underline!
+  tw:transition-colors
+  tw:cursor-pointer
+  tw:disabled:cursor-not-allowed tw:disabled:opacity-40
+  tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4
+  tw:focus-visible:outline-funcode-accent
+  tw:motion-reduce:transition-none
+`;
+
 function Feedback({ children, success = false }) {
   return (
     <p
@@ -190,39 +205,103 @@ function AdminPublications({ user }) {
             ) : (
               <div className="tw:grid tw:gap-6 tw:md:grid-cols-2">
                 {myPosts.map((post) => (
-                  <div
-                    key={post.id}
-                    className="tw:flex tw:min-w-0 tw:flex-col"
-                  >
+                  <div key={post.id} className="tw:flex tw:min-w-0 tw:flex-col">
                     <div className="tw:flex-1">
                       <PostCard post={post} />
                     </div>
 
                     {post.user?.id === user.id && (
                       <div className="tw:mt-3 tw:flex tw:flex-wrap tw:gap-3">
-                        <Link
-                          to={`/publicaciones/${post.id}/editar`}
-                          className={buttonClass}
-                          aria-label={`Editar ${post.title}`}
-                        >
-                          Editar
-                        </Link>
+                        <div className="tw:mt-3 tw:flex tw:justify-end tw:gap-2">
+                          <Link
+                            to={`/publicaciones/${post.id}/editar`}
+                            className={`
+      ${iconButtonClass}
+      tw:text-funcode-accent!
+      tw:hover:border-funcode-accent/50
+      tw:hover:bg-funcode-accent/10
+    `}
+                            aria-label={`Editar ${post.title}`}
+                            title="Editar publicación"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              aria-hidden="true"
+                              focusable="false"
+                            >
+                              <path d="m16 3 5 5" />
+                              <path d="M4 20 5 15 17 3a2.12 2.12 0 0 1 3 3L8 18Z" />
+                            </svg>
+                          </Link>
 
-                        <button
-                          type="button"
-                          className={`
-                            ${buttonClass}
-                            tw:border-funcode-danger/30
-                            tw:text-funcode-danger!
-                          `}
-                          aria-label={`Eliminar ${post.title}`}
-                          disabled={deletingId !== null}
-                          onClick={() => handleDelete(post)}
-                        >
-                          {deletingId === post.id
-                            ? "Eliminando..."
-                            : "Eliminar"}
-                        </button>
+                          <button
+                            type="button"
+                            className={`
+      ${iconButtonClass}
+      tw:text-funcode-danger!
+      tw:enabled:hover:border-funcode-danger/50
+      tw:enabled:hover:bg-funcode-danger/10
+    `}
+                            aria-label={
+                              deletingId === post.id
+                                ? `Eliminando ${post.title}`
+                                : `Eliminar ${post.title}`
+                            }
+                            title={
+                              deletingId === post.id
+                                ? "Eliminando publicación..."
+                                : "Eliminar publicación"
+                            }
+                            disabled={deletingId !== null}
+                            onClick={() => handleDelete(post)}
+                          >
+                            {deletingId === post.id ? (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.8"
+                                strokeLinecap="round"
+                                aria-hidden="true"
+                                focusable="false"
+                                className="tw:motion-safe:animate-spin"
+                              >
+                                <circle cx="12" cy="12" r="9" opacity="0.2" />
+                                <path d="M12 3a9 9 0 0 1 9 9" />
+                              </svg>
+                            ) : (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="1.8"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                                focusable="false"
+                              >
+                                <path d="M3 6h18" />
+                                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+                                <path d="m5 6 1 14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1l1-14" />
+                                <path d="M10 10v7M14 10v7" />
+                              </svg>
+                            )}
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>
@@ -363,7 +442,10 @@ function ProfilePage() {
           </div>
 
           {isProfileLoading ? (
-            <p role="status" className="tw:mb-5 tw:text-sm tw:text-funcode-muted">
+            <p
+              role="status"
+              className="tw:mb-5 tw:text-sm tw:text-funcode-muted"
+            >
               Cargando perfil...
             </p>
           ) : profileError ? (
@@ -439,9 +521,9 @@ function ProfilePage() {
               </h2>
 
               <p className="tw:mb-7 tw:max-w-xl tw:text-base tw:leading-relaxed tw:text-funcode-muted">
-                Revisa páginas web, catálogos digitales y sistemas
-                a medida. Desde el detalle de cada servicio puedes
-                consultar su alcance y enviar una solicitud de cotización.
+                Revisa páginas web, catálogos digitales y sistemas a medida.
+                Desde el detalle de cada servicio puedes consultar su alcance y
+                enviar una solicitud de cotización.
               </p>
 
               <Link to="/productos" className={primaryButton}>
@@ -449,20 +531,22 @@ function ProfilePage() {
               </Link>
 
               <div className="tw:mt-8 tw:grid tw:gap-3 tw:sm:grid-cols-3">
-                {["Páginas web", "Catálogos digitales", "Sistemas a medida"].map(
-                  (label) => (
-                    <div
-                      key={label}
-                      className="
+                {[
+                  "Páginas web",
+                  "Catálogos digitales",
+                  "Sistemas a medida",
+                ].map((label) => (
+                  <div
+                    key={label}
+                    className="
                         tw:rounded-xl tw:border tw:border-solid
                         tw:border-funcode-line tw:bg-funcode-bg/50
                         tw:p-4 tw:text-sm tw:text-funcode-muted
                       "
-                    >
-                      {label}
-                    </div>
-                  ),
-                )}
+                  >
+                    {label}
+                  </div>
+                ))}
               </div>
             </section>
           )}
