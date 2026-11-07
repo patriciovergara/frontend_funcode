@@ -181,7 +181,9 @@ function ServicePreview({ src, title }) {
 }
 
 function ServiceRequestForm({ post }) {
-  const { token, user } = useAuth();
+  const { session } = useAuth();
+  const token = session?.token;
+  const user = session?.user;
 
   const [form, setForm] = useState({
     ...initialRequestForm,
@@ -282,8 +284,8 @@ function ServiceRequestForm({ post }) {
           </h2>
 
           <p className="tw:mb-6 tw:text-base tw:leading-relaxed tw:text-funcode-muted">
-            Completa tus datos y describe tu proyecto. Funcode revisará
-            tu solicitud para conversar sobre sus necesidades y alcance.
+            Completa tus datos y describe tu proyecto. Funcode revisará tu
+            solicitud para conversar sobre sus necesidades y alcance.
           </p>
 
           <div
@@ -302,8 +304,8 @@ function ServiceRequestForm({ post }) {
           </div>
 
           <p className="tw:mt-6 tw:mb-0 tw:text-xs tw:leading-relaxed tw:text-funcode-muted">
-            Enviar esta solicitud no realiza un cobro ni confirma
-            la contratación de un servicio.
+            Enviar esta solicitud no realiza un cobro ni confirma la
+            contratación de un servicio.
           </p>
         </div>
 
@@ -465,8 +467,8 @@ function ServiceRequestForm({ post }) {
                     <Link to="/privacidad" className={inlineLink}>
                       Política de privacidad
                     </Link>
-                    . No incluyas contraseñas ni información sensible
-                    en tu mensaje.
+                    . No incluyas contraseñas ni información sensible en tu
+                    mensaje.
                   </p>
 
                   <button
@@ -474,7 +476,9 @@ function ServiceRequestForm({ post }) {
                     className={`${primaryButton} tw:w-full tw:sm:w-auto`}
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Enviando solicitud..." : "Enviar solicitud"}
+                    {isSubmitting
+                      ? "Enviando solicitud..."
+                      : "Enviar solicitud"}
                     {!isSubmitting && <Arrow />}
                   </button>
                 </div>
@@ -490,9 +494,7 @@ function ServiceRequestForm({ post }) {
 function DetailState({ title, description, isError = false }) {
   return (
     <section className={pageClass}>
-      <div
-        className={`${panelClass} tw:px-6 tw:py-12 tw:text-center`}
-      >
+      <div className={`${panelClass} tw:px-6 tw:py-12 tw:text-center`}>
         <p className="tw:mb-3 tw:text-xs tw:tracking-widest tw:text-funcode-accent tw:uppercase">
           Servicios Funcode
         </p>
@@ -647,9 +649,8 @@ function PostDetailPage() {
             </p>
 
             <p className="tw:m-0 tw:text-xs tw:leading-relaxed tw:text-funcode-muted">
-              Revisa el alcance descrito. Las funciones adicionales
-              y los costos externos se especifican en la propuesta
-              cuando correspondan.
+              Revisa el alcance descrito. Las funciones adicionales y los costos
+              externos se especifican en la propuesta cuando correspondan.
             </p>
           </div>
 
@@ -665,8 +666,8 @@ function PostDetailPage() {
           </div>
 
           <p className="tw:mt-4 tw:mb-0 tw:text-xs tw:leading-relaxed tw:text-funcode-muted">
-            Consulta el alcance antes de contratar. La solicitud
-            permite conversar sobre las necesidades de tu proyecto.
+            Consulta el alcance antes de contratar. La solicitud permite
+            conversar sobre las necesidades de tu proyecto.
           </p>
         </div>
       </div>

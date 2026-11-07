@@ -24,6 +24,7 @@ function App() {
     pathname === "/productos" ||
     pathname === "/login" ||
     pathname === "/registro" ||
+    pathname === "/mi-perfil" ||
     /^\/productos\/[^/]+\/?$/.test(pathname);
 
   return (
