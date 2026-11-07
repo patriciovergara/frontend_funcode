@@ -137,7 +137,7 @@ function ServicePreview({ src, title }) {
             decoding="async"
             onError={() => setHasError(true)}
             className="
-              tw:block tw:aspect-[4/3] tw:w-full
+              tw:block tw:aspect-4/3 tw:w-full
               tw:rounded-xl tw:object-contain
             "
           />
@@ -145,7 +145,7 @@ function ServicePreview({ src, title }) {
       ) : (
         <div
           className="
-            tw:relative tw:flex tw:aspect-[4/3]
+            tw:relative tw:flex tw:aspect-4/3
             tw:items-center tw:justify-center tw:overflow-hidden
             tw:p-6 tw:text-center
           "
@@ -532,7 +532,7 @@ function PostDetailPage() {
           aria-hidden="true"
           className="tw:grid tw:gap-8 tw:lg:grid-cols-2 tw:motion-safe:animate-pulse"
         >
-          <div className={`${panelClass} tw:aspect-[4/3] tw:bg-white/5`} />
+          <div className={`${panelClass} tw:aspect-4/3 tw:bg-white/5`} />
 
           <div className="tw:space-y-5 tw:py-4">
             <div className="tw:h-4 tw:w-1/3 tw:rounded tw:bg-white/10" />
@@ -590,7 +590,7 @@ function PostDetailPage() {
 
           <li aria-hidden="true">/</li>
 
-          <li className="tw:min-w-0 tw:break-words" aria-current="page">
+          <li className="tw:min-w-0 tw:wrap-break" aria-current="page">
             {post.title}
           </li>
         </ol>
