@@ -17,10 +17,24 @@ Actualmente se trabaja en:
 - Navegación y control de acceso.
 - Documentación de términos y privacidad.
 - Preparación del despliegue.
+- Endurecimiento de la configuración de producción para evitar el uso de datos falsos o demo en ambientes reales.
 
 La existencia de servicios de conexión no implica que todos los recorridos estén verificados en producción.
 
 Los cambios locales deben guardarse, comprobarse y sincronizarse con GitHub antes de desplegar.
+
+## Seguridad y configuración de producción
+
+El frontend se ha ajustado para evitar modos inseguros por defecto:
+
+- `VITE_DATA_MODE` solo acepta `demo` o `api`.
+- El modo `demo` queda bloqueado fuera de desarrollo.
+- En producción se debe usar `VITE_DATA_MODE=api` y una URL backend explícita.
+- La aplicación envía credenciales con `credentials: "include"` para soportar cookies `HttpOnly` en la sesión autenticada.
+
+Esto evita que la interfaz siga conectándose a datos de prueba al desplegarse en producción.
+
+El sitio incluye también el contacto corporativo de Funcode: `contacto@funcode.cl` y un formulario de contacto que se entrega al buzón de la marca en producción.
 
 ## Tecnologías
 
@@ -32,6 +46,7 @@ Los cambios locales deben guardarse, comprobarse y sincronizarse con GitHub ante
 - JavaScript.
 - Bootstrap y CSS personalizado.
 - ESLint.
+- Cliente HTTP con soporte para cookies y sesión autenticada.
 
 Consultar `funcode/package.json` y `funcode/package-lock.json` para conocer las dependencias y versiones exactas.
 
@@ -143,6 +158,8 @@ Definir las variables en el archivo de entorno que cargue Vite.
 VITE_DATA_MODE=demo
 ```
 
+Solo está permitido en desarrollo local. No debe usarse en producción.
+
 ### Modo API local
 
 ```env
@@ -152,11 +169,7 @@ VITE_API_BASE_URL=http://localhost:3000/api/v1
 
 La URL debe incluir el prefijo `/api/v1`.
 
-Si no se define `VITE_DATA_MODE`, la configuración actual utiliza `demo`.
-
-Si no se define `VITE_API_BASE_URL`, la configuración actual utiliza la API local.
-
-Para producción, ambas variables deben configurarse explícitamente con los valores del entorno correspondiente.
+En producción, la aplicación debe usarse con `VITE_DATA_MODE=api` y una URL de backend válida. Si la variable no se define o si el valor es incompatible, la app fallará con una configuración explícita para evitar ejecuciones inseguras.
 
 Las variables `VITE_*` forman parte del código enviado al navegador: no deben contener contraseñas, secretos JWT ni credenciales de PostgreSQL.
 

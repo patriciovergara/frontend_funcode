@@ -15,6 +15,7 @@ import EditPostPage from "./pages/EditPostPage";
 import AdminRoute from "./components/AdminRoute";
 import Terminos from "./pages/Terminos";
 import Privacidad from "./pages/Privacidad";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const { pathname } = useLocation();
@@ -28,6 +29,7 @@ function App() {
     pathname === "/publicaciones/nueva" ||
     pathname === "/terminos" ||
     pathname === "/privacidad" ||
+    pathname === "/contacto" ||
     /^\/publicaciones\/[^/]+\/editar\/?$/.test(pathname) ||
     /^\/productos\/[^/]+\/?$/.test(pathname);
 
@@ -71,6 +73,8 @@ function App() {
           <Route path="/terminos" element={<Terminos />} />
 
           <Route path="/privacidad" element={<Privacidad />} />
+
+          <Route path="/contacto" element={<ContactPage />} />
 
           <Route
             path="*"

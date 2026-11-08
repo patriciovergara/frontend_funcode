@@ -60,6 +60,7 @@ function FooterLink({ to, children }) {
 function Footer() {
   const { isAuthenticated } = useAuth();
   const currentYear = new Date().getFullYear();
+  const contactEmail = "contacto@funcode.cl";
 
   return (
     <footer className="fc-footer">
@@ -136,7 +137,20 @@ function Footer() {
               que quieren dar el siguiente paso.
             </p>
 
+            <a
+              href={`mailto:${contactEmail}`}
+              className="fc-footer__link fc-footer__email-link"
+              style={{ borderBottom: "none", minHeight: "auto", paddingBlock: "0.35rem" }}
+            >
+              <span>{contactEmail}</span>
+              <ArrowIcon diagonal />
+            </a>
+
             <span className="fc-footer__signature">
+              funcode.cl
+            </span>
+
+            <span className="fc-footer__signature" style={{ display: "block", marginTop: "0.5rem" }}>
               Ideas claras. Soluciones funcionales.
             </span>
           </div>
@@ -193,6 +207,10 @@ function Footer() {
                   </FooterLink>
                 </>
               )}
+
+              <FooterLink to="/contacto">
+                Contacto
+              </FooterLink>
             </ul>
           </nav>
         </div>

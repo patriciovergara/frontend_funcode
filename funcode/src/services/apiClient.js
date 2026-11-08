@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "./apiConfig";
+﻿import { API_BASE_URL } from "./apiConfig";
 
 export class ApiError extends Error {
   constructor(message, status, data = null) {
@@ -39,6 +39,7 @@ export async function apiRequest(
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method,
     headers,
+    credentials: "include",
     body: body === undefined ? undefined : JSON.stringify(body),
     signal,
   });
