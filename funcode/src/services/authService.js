@@ -104,6 +104,13 @@ export async function registerUser({ name, email, password }) {
   };
 }
 
+export async function verifyRegistration({ verificationId, code }) {
+  return apiRequest("/users/verify", {
+    method: "POST",
+    body: { verificationId, code },
+  });
+}
+
 export async function getCurrentUser(token, { signal } = {}) {
   if (!IS_DEMO_MODE) {
     return apiRequest("/users/me", {
