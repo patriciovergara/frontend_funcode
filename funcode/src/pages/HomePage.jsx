@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { listProjects } from "../services/projectsApi";
+import "./HomePage.css";
 
 const services = [
   {
@@ -151,7 +154,7 @@ function SectionHeading({ eyebrow, title, description, id }) {
         id={id}
         className="
           tw:m-0 tw:text-3xl tw:leading-tight
-          tw:font-semibold tw:tracking-tight tw:text-funcode-text
+          tw:font-display tw:font-semibold tw:tracking-tight tw:text-funcode-text
           tw:md:text-4xl
         "
       >
@@ -173,264 +176,274 @@ function SectionHeading({ eyebrow, title, description, id }) {
 }
 
 function InterfacePreview() {
+  const [previewMode, setPreviewMode] = useState("web");
+  const previewVariants = {
+    web: {
+      label: "Experiencia web",
+      title: "Tu negocio, listo para dar el siguiente paso.",
+      description:
+        "Una presencia clara y atractiva para presentar lo que haces y facilitar el contacto.",
+      feature: "Una idea. Nuevas posibilidades.",
+      action: "Explorar servicios",
+    },
+    system: {
+      label: "Sistema a medida",
+      title: "Menos tareas repetidas. Más claridad.",
+      description:
+        "Herramientas conectadas para ordenar información y apoyar el trabajo de tu equipo.",
+      feature: "Procesos simples. Mejor organizados.",
+      action: "Conocer soluciones",
+    },
+  };
+  const content = previewVariants[previewMode];
+
   return (
-    <figure className="tw:relative tw:m-0 tw:min-w-0">
-      <div
-        aria-hidden="true"
-        className="
-          tw:pointer-events-none tw:absolute tw:inset-8
-          tw:rounded-full tw:bg-funcode-violet/15 tw:blur-3xl
-        "
-      />
-
-      {/* Composición decorativa, no es una aplicación interactiva. */}
-      <div
-        aria-hidden="true"
-        className="
-          tw:relative tw:overflow-hidden tw:rounded-2xl
-          tw:border tw:border-solid tw:border-white/15
-          tw:bg-funcode-surface tw:shadow-funcode-card
-          tw:transition-transform tw:duration-500
-          tw:motion-safe:hover:-translate-y-1
-          tw:motion-reduce:transition-none
-        "
-      >
-        <div
-          className="
-            tw:flex tw:items-center tw:gap-2
-            tw:border-0 tw:border-b tw:border-solid tw:border-white/10
-            tw:bg-white/5 tw:px-4 tw:py-3
-          "
-        >
-          <span className="tw:h-2 tw:w-2 tw:rounded-full tw:bg-rose-300/70" />
-          <span className="tw:h-2 tw:w-2 tw:rounded-full tw:bg-amber-200/70" />
-          <span className="tw:h-2 tw:w-2 tw:rounded-full tw:bg-emerald-200/70" />
-
-          <span
-            className="
-              tw:ml-auto tw:font-mono
-              tw:text-[10px] tw:text-funcode-muted
-            "
-          >
-            concepto / interfaz digital
-          </span>
-        </div>
-
-        <div className="tw:grid tw:grid-cols-[48px_minmax(0,1fr)] tw:sm:grid-cols-[64px_minmax(0,1fr)]">
-          <div
-            className="
-              tw:flex tw:flex-col tw:items-center tw:gap-5
-              tw:border-0 tw:border-r tw:border-solid tw:border-white/10
-              tw:bg-funcode-bg/50 tw:py-6
-            "
-          >
-            <span className="tw:font-mono tw:text-sm tw:text-funcode-accent">
-              {"</>"}
+    <figure className="fc-preview" aria-label="Vista conceptual de soluciones Funcode">
+      <div className="fc-preview__window">
+        <div className="fc-preview__topbar">
+          <div className="fc-preview__brand">
+            <span aria-hidden="true" className="fc-preview__brand-mark">
+              F
             </span>
-
-            {[0, 1, 2, 3].map((item) => (
-              <span
-                key={item}
-                className="
-                  tw:h-5 tw:w-5 tw:rounded-md
-                  tw:border tw:border-solid tw:border-white/15
-                  tw:bg-white/5
-                "
-              />
-            ))}
+            <span>FUNCODE / DIGITAL STUDIO</span>
           </div>
 
-          <div className="tw:min-w-0 tw:p-4 tw:sm:p-6">
-            <div className="tw:mb-6 tw:flex tw:items-center tw:justify-between tw:gap-3">
-              <span className="tw:text-xs tw:font-semibold tw:text-funcode-text">
-                Tu negocio, conectado.
-              </span>
-
-              <span
-                className="
-                  tw:rounded-full tw:bg-funcode-accent/10
-                  tw:px-2 tw:py-1 tw:text-[10px] tw:text-funcode-accent
-                "
-              >
-                Vista conceptual
-              </span>
-            </div>
-
-            <div
-              className="
-                tw:relative tw:mb-4 tw:overflow-hidden tw:rounded-xl
-                tw:border tw:border-solid tw:border-white/10
-                tw:bg-funcode-bg tw:p-5
-              "
+          <div className="fc-preview__switcher" role="group" aria-label="Tipo de solución">
+            <button
+              type="button"
+              aria-pressed={previewMode === "web"}
+              onClick={() => setPreviewMode("web")}
             >
-              <div
-                className="
-                  tw:absolute tw:-right-5 tw:-bottom-12
-                  tw:h-36 tw:w-36 tw:rounded-full
-                  tw:border tw:border-solid tw:border-funcode-accent/25
-                "
-              />
+              Sitio web
+            </button>
+            <button
+              type="button"
+              aria-pressed={previewMode === "system"}
+              onClick={() => setPreviewMode("system")}
+            >
+              Sistema
+            </button>
+          </div>
+        </div>
 
-              <div
-                className="
-                  tw:absolute tw:right-2 tw:-bottom-8
-                  tw:h-24 tw:w-24 tw:rounded-full
-                  tw:border tw:border-solid tw:border-funcode-violet/30
-                "
-              />
+        <div className="fc-preview__content" aria-live="polite">
+          <div className="fc-preview__rail" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
 
-              <span className="tw:relative tw:text-[10px] tw:tracking-widest tw:text-funcode-accent tw:uppercase">
-                Experiencias digitales
+          <div className="fc-preview__main">
+            <p className="fc-preview__caption">{content.label}</p>
+            <h2 className="fc-preview__headline">{content.title}</h2>
+            <p className="fc-preview__description">{content.description}</p>
+
+            <div className="fc-preview__canvas">
+              <span className="fc-preview__canvas-label">
+                Diseñado para tu negocio
               </span>
-
-              <p className="tw:relative tw:mt-3 tw:mb-5 tw:max-w-48 tw:text-xl tw:leading-tight tw:font-semibold tw:text-white">
-                Una idea.
-                <br />
-                Nuevas posibilidades.
-              </p>
-
-              <div className="tw:h-2 tw:w-20 tw:rounded-full tw:bg-funcode-accent/80" />
-            </div>
-
-            <div className="tw:grid tw:grid-cols-2 tw:gap-3">
-              {[
-                { label: "Catálogo", color: "tw:bg-funcode-accent/15" },
-                { label: "Gestión", color: "tw:bg-funcode-violet/15" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="
-                    tw:rounded-xl tw:border tw:border-solid
-                    tw:border-white/10 tw:bg-white/3 tw:p-3
-                  "
-                >
-                  <div
-                    className={`tw:mb-3 tw:h-12 tw:rounded-lg ${item.color}`}
-                  />
-
-                  <p className="tw:m-0 tw:text-xs tw:text-funcode-text">
-                    {item.label}
-                  </p>
-
-                  <div className="tw:mt-2 tw:h-1.5 tw:w-2/3 tw:rounded-full tw:bg-white/10" />
-                </div>
-              ))}
+              <p className="fc-preview__canvas-title">{content.feature}</p>
+              <span className="fc-preview__canvas-action">
+                {content.action} <Arrow />
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <figcaption className="tw:mt-4 tw:text-center tw:text-xs tw:leading-relaxed tw:text-funcode-muted">
-        Composición conceptual de interfaces. El diseño y las funcionalidades se
-        definen para cada proyecto.
-      </figcaption>
+      <div className="fc-preview__float" aria-hidden="true">
+        <span className="fc-preview__float-icon">✳</span>
+        <span>Diseño pensado<br />para personas</span>
+      </div>
     </figure>
+  );
+}
+
+function ProjectCard({ project, index }) {
+  const [imageUnavailable, setImageUnavailable] = useState(!project.image_url);
+  const initials = project.title
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word.charAt(0))
+    .join("")
+    .toUpperCase();
+
+  return (
+    <a
+      className="fc-work-card"
+      href={project.project_url}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`${project.title}: abrir sitio en una pestaña nueva`}
+    >
+      <div className="fc-work-card__image">
+        <span className="fc-work-card__number">
+          PROYECTO / {String(index + 1).padStart(2, "0")}
+        </span>
+        {project.image_url && !imageUnavailable ? (
+          <img
+            src={project.image_url}
+            alt=""
+            loading="lazy"
+            onError={() => setImageUnavailable(true)}
+          />
+        ) : (
+          <span className="fc-work-card__fallback" aria-hidden="true">
+            {initials}
+          </span>
+        )}
+        <span className="fc-work-card__open" aria-hidden="true">
+          <Arrow diagonal />
+        </span>
+      </div>
+
+      <div className="fc-work-card__body">
+        <div>
+          <p className="fc-work-card__eyebrow">Diseño y desarrollo web</p>
+          <h3 className="fc-work-card__title">{project.title}</h3>
+          {project.description && (
+            <p className="fc-work-card__description">{project.description}</p>
+          )}
+        </div>
+      </div>
+    </a>
+  );
+}
+
+function FeaturedWork() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+
+    listProjects({ signal: controller.signal })
+      .then((result) => {
+        if (active) setProjects(result.slice(0, 2));
+      })
+      .catch(() => {
+        if (active && !controller.signal.aborted) setHasError(true);
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+      controller.abort();
+    };
+  }, []);
+
+  return (
+    <section
+      className="fc-home__section fc-home__work"
+      aria-labelledby="featured-work-title"
+    >
+      <div className="fc-home__section-heading">
+        <p className="tw:mb-3 tw:text-xs tw:font-semibold tw:tracking-widest tw:text-funcode-accent tw:uppercase">
+          Trabajo seleccionado
+        </p>
+        <h2
+          id="featured-work-title"
+          className="tw:m-0 tw:text-3xl tw:leading-tight tw:font-semibold tw:tracking-tight tw:text-funcode-text tw:md:text-4xl"
+        >
+          Ideas que ya están en línea.
+        </h2>
+        <p className="tw:mt-4 tw:mb-0 tw:text-base tw:leading-relaxed tw:text-funcode-muted">
+          Conoce algunos de los proyectos que hemos desarrollado junto a
+          nuestros clientes.
+        </p>
+      </div>
+
+      {loading && (
+        <p className="tw:m-0 tw:text-sm tw:text-funcode-muted" role="status">
+          Cargando proyectos…
+        </p>
+      )}
+
+      {hasError && (
+        <p className="fc-home__error" role="alert">
+          No fue posible cargar los proyectos en este momento. Puedes visitar
+          nuestro portafolio para conocerlos.
+        </p>
+      )}
+
+      {!loading && !hasError && projects.length > 0 && (
+        <div className="fc-home__work-grid">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+      )}
+
+      <div className="fc-home__work-footer">
+        <span>Proyectos reales, construidos para necesidades reales.</span>
+        <Link to="/proyectos">
+          Ver todos los proyectos <Arrow />
+        </Link>
+      </div>
+    </section>
   );
 }
 
 function HomePage() {
   return (
-    <div
-      className="
-    tw:relative tw:isolate
-    tw:mx-auto tw:w-full tw:max-w-7xl
-    tw:overflow-hidden
-    tw:bg-funcode-bg tw:font-sans tw:text-funcode-text
-  "
-    >
+    <div className="fc-home tw:font-sans">
       {/* HERO */}
       <section
         aria-labelledby="home-title"
-        className="
-          tw:relative tw:px-5 tw:pt-12 tw:pb-10
-          tw:sm:px-8 tw:lg:px-10 tw:lg:pt-20 tw:lg:pb-16
-        "
+        className="fc-home__hero"
       >
-        <div
-          aria-hidden="true"
-          className="
-            tw:pointer-events-none tw:absolute tw:-top-32 tw:-left-32
-            tw:h-96 tw:w-96 tw:rounded-full
-            tw:bg-funcode-accent/10 tw:blur-3xl
-          "
-        />
-
-        <div
-          className="
-            tw:relative tw:grid tw:items-center tw:gap-12
-            tw:lg:grid-cols-2
-            tw:motion-safe:animate-funcode-enter
-          "
-        >
-          <div className="tw:min-w-0">
-            <p
-              className="
-                tw:mb-5 tw:inline-flex tw:items-center tw:gap-2
-                tw:rounded-full tw:border tw:border-solid tw:border-white/10
-                tw:bg-white/5 tw:px-3 tw:py-2
-                tw:text-[11px] tw:font-medium tw:text-funcode-accent
-              "
-            >
-              <span
-                aria-hidden="true"
-                className="tw:h-1.5 tw:w-1.5 tw:rounded-full tw:bg-funcode-accent"
-              />
-              Desarrollo web y soluciones empresariales
-            </p>
-
+        <div className="fc-home__hero-grid tw:motion-safe:animate-funcode-enter">
+          <div className="fc-home__hero-copy">
+            <p className="fc-home__eyebrow">Funcode · estudio digital</p>
             <h1
               id="home-title"
-              className="
-                tw:m-0 tw:text-4xl tw:leading-[1.08]
-                tw:font-bold tw:tracking-tight tw:text-funcode-text
-                tw:sm:text-5xl tw:xl:text-6xl
-              "
+              className="fc-home__title"
             >
-              Tu negocio.
-              <br />
-              Su siguiente
-              <br />
-              <span
-                className="
-                  tw:bg-linear-to-r tw:from-funcode-accent
-                  tw:to-funcode-violet tw:bg-clip-text tw:text-transparent
-                "
-              >
-                versión digital.
-              </span>
+              Hagamos que tu negocio
+              <em>se vea y funcione mejor.</em>
             </h1>
-
-            <p className="tw:mt-6 tw:mb-0 tw:max-w-xl tw:text-base tw:leading-relaxed tw:text-funcode-muted">
-              Funcode desarrolla páginas web, aplicaciones y sistemas de gestión
-              para presentar tu negocio, organizar tus procesos y conectar con
-              tus clientes.
+            <p className="fc-home__lead">
+              Diseñamos y desarrollamos sitios web, sistemas e integraciones
+              para que tu negocio pueda dar el siguiente paso con una solución
+              hecha a su medida.
             </p>
-
-            <div className="tw:mt-8 tw:flex tw:flex-wrap tw:gap-3">
-              <Link to="/productos" className={primaryButton}>
-                Explorar servicios
+            <div className="fc-home__actions">
+              <Link to="/contacto" className={primaryButton}>
+                Cuéntanos tu idea
                 <Arrow />
               </Link>
-
-              <a href="#servicios" className={secondaryButton}>
-                Conocer soluciones
-              </a>
+              <Link to="/proyectos" className={secondaryButton}>
+                Ver proyectos <Arrow diagonal />
+              </Link>
             </div>
-
-            <p className="tw:mt-5 tw:mb-0 tw:text-xs tw:leading-relaxed tw:text-funcode-muted">
-              Desde una landing page hasta una plataforma con backend y base de
-              datos.
+            <p className="fc-home__hero-note">
+              <span>Sitios web</span>
+              <span>Sistemas a medida</span>
+              <span>Integraciones</span>
             </p>
           </div>
-
           <InterfacePreview />
         </div>
       </section>
 
+      <div className="fc-home__ticker" aria-label="Servicios Funcode">
+        <span>Diseño web</span>
+        <span>Desarrollo a medida</span>
+        <span>Automatización</span>
+        <span>Integraciones</span>
+      </div>
+
+      <FeaturedWork />
+
       {/* SERVICIO DESTACADO */}
       <section
         aria-labelledby="landing-title"
-        className="tw:px-5 tw:pb-12 tw:sm:px-8 tw:lg:px-10"
+        className="fc-home__section tw:pt-4"
       >
         <div
           className="
@@ -494,10 +507,7 @@ function HomePage() {
       <section
         id="servicios"
         aria-labelledby="services-title"
-        className="
-          tw:scroll-mt-28 tw:px-5 tw:py-12
-          tw:sm:px-8 tw:lg:px-10 tw:lg:py-16
-        "
+        className="fc-home__section tw:scroll-mt-28"
       >
         <SectionHeading
           id="services-title"
@@ -588,7 +598,7 @@ function HomePage() {
       {/* CAPACIDADES */}
       <section
         aria-labelledby="capabilities-title"
-        className="tw:px-5 tw:py-12 tw:sm:px-8 tw:lg:px-10 tw:lg:py-16"
+        className="fc-home__section"
       >
         <SectionHeading
           id="capabilities-title"
@@ -631,7 +641,7 @@ function HomePage() {
       {/* PROCESO */}
       <section
         aria-labelledby="process-title"
-        className="tw:px-5 tw:py-12 tw:sm:px-8 tw:lg:px-10 tw:lg:py-16"
+        className="fc-home__section"
       >
         <SectionHeading
           id="process-title"
@@ -673,47 +683,28 @@ function HomePage() {
       {/* CIERRE */}
       <section
         aria-labelledby="home-cta-title"
-        className="tw:px-5 tw:pt-8 tw:pb-12 tw:sm:px-8 tw:lg:px-10 tw:lg:pb-16"
+        className="fc-home__section"
       >
-        <div
-          className="
-            tw:relative tw:overflow-hidden tw:rounded-2xl
-            tw:border tw:border-solid tw:border-funcode-accent/25
-            tw:bg-funcode-surface tw:p-7 tw:md:p-10
-          "
-        >
-          <div
-            aria-hidden="true"
-            className="
-              tw:pointer-events-none tw:absolute tw:-top-24 tw:-right-24
-              tw:h-72 tw:w-72 tw:rounded-full
-              tw:bg-funcode-violet/15 tw:blur-3xl
-            "
-          />
-
-          <div className="tw:relative tw:max-w-2xl">
+        <div className="fc-home__cta">
+          <div className="tw:relative tw:max-w-3xl">
             <p className="tw:mb-3 tw:text-xs tw:tracking-widest tw:text-funcode-accent tw:uppercase">
               Tu próximo proyecto
             </p>
 
             <h2
               id="home-cta-title"
-              className="
-                tw:mb-4 tw:text-3xl tw:leading-tight
-                tw:font-semibold tw:tracking-tight tw:text-funcode-text
-                tw:md:text-4xl
-              "
+              className="tw:mb-4 tw:text-3xl tw:leading-tight tw:font-semibold tw:tracking-tight tw:text-funcode-text tw:md:text-4xl"
             >
-              Una buena idea merece una solución bien construida.
+              ¿Tienes un desafío? Convirtámoslo en una solución digital.
             </h2>
 
             <p className="tw:mb-6 tw:text-base tw:leading-relaxed tw:text-funcode-muted">
-              Explora los servicios de Funcode, revisa su alcance y encuentra el
-              punto de partida para tu negocio.
+              Cuéntanos qué necesitas. Revisaremos tu idea y te ayudaremos a
+              definir un camino claro para llevarla a cabo.
             </p>
 
-            <Link to="/productos" className={primaryButton}>
-              Ver catálogo de servicios
+            <Link to="/contacto" className={primaryButton}>
+              Hablemos de tu proyecto
               <Arrow />
             </Link>
           </div>

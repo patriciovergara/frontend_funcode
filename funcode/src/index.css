@@ -1,7 +1,34 @@
+:root {
+  font-family: "Manrope Variable", Manrope, "Segoe UI", sans-serif;
+  color: #eef4ff;
+  background: #070b13;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  color-scheme: dark;
+}
+
 body {
-  margin: 0;
   min-width: 320px;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #fff;
-  color: #212529;
+  min-height: 100vh;
+  margin: 0;
+  color: #eef4ff;
+  background:
+    radial-gradient(ellipse at 50% -24rem, rgba(47, 86, 148, 0.18), transparent 55%),
+    #070b13;
+  font-family: "Manrope Variable", Manrope, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  color: #07111f;
+  background: #8ad9ff;
 }

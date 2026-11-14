@@ -19,7 +19,7 @@ function PostsProvider({ children }) {
   );
 
   function requireSession() {
-    if (!session.user || !session.token) {
+    if (!session.user) {
       throw new Error("Debes iniciar sesión para realizar esta operación.");
     }
   }

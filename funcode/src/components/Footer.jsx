@@ -192,6 +192,10 @@ function Footer() {
                 Todos los servicios
               </FooterLink>
 
+              <FooterLink to="/proyectos">
+                Proyectos realizados
+              </FooterLink>
+
               {isAuthenticated ? (
                 <FooterLink to="/mi-perfil">
                   Mi perfil

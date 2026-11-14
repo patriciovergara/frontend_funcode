@@ -105,15 +105,15 @@ export async function registerUser({ name, email, password }) {
 }
 
 export async function getCurrentUser(token, { signal } = {}) {
-  if (!token) {
-    throw new Error("Se necesita un token para consultar el perfil.");
-  }
-
   if (!IS_DEMO_MODE) {
     return apiRequest("/users/me", {
       token,
       signal,
     });
+  }
+
+  if (!token) {
+    throw new Error("Se necesita una sesión para consultar el perfil.");
   }
 
   throw new Error(

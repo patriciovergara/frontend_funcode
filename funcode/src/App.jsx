@@ -16,6 +16,8 @@ import AdminRoute from "./components/AdminRoute";
 import Terminos from "./pages/Terminos";
 import Privacidad from "./pages/Privacidad";
 import ContactPage from "./pages/ContactPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import AdminProjectsPage from "./pages/AdminProjectsPage";
 
 function App() {
   const { pathname } = useLocation();
@@ -30,6 +32,8 @@ function App() {
     pathname === "/terminos" ||
     pathname === "/privacidad" ||
     pathname === "/contacto" ||
+    pathname === "/proyectos" ||
+    pathname === "/administrar/proyectos" ||
     /^\/publicaciones\/[^/]+\/editar\/?$/.test(pathname) ||
     /^\/productos\/[^/]+\/?$/.test(pathname);
 
@@ -62,6 +66,10 @@ function App() {
 
             <Route element={<AdminRoute />}>
               <Route path="/publicaciones/nueva" element={<CreatePostPage />} />
+              <Route
+                path="/administrar/proyectos"
+                element={<AdminProjectsPage />}
+              />
 
               <Route
                 path="/publicaciones/:id/editar"
@@ -75,6 +83,8 @@ function App() {
           <Route path="/privacidad" element={<Privacidad />} />
 
           <Route path="/contacto" element={<ContactPage />} />
+
+          <Route path="/proyectos" element={<ProjectsPage />} />
 
           <Route
             path="*"

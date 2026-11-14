@@ -353,6 +353,7 @@ function ProfilePage() {
 
   const { session, logout } = useAuth();
   const navigate = useNavigate();
+  const [logoutError, setLogoutError] = useState("");
 
   const user = session?.user;
 
@@ -370,9 +371,19 @@ function ProfilePage() {
     .join("")
     .toUpperCase();
 
-  function handleLogout() {
-    logout();
-    navigate("/login", { replace: true });
+  async function handleLogout() {
+    setLogoutError("");
+
+    try {
+      await logout();
+      navigate("/login", { replace: true });
+    } catch (error) {
+      setLogoutError(
+        error instanceof Error
+          ? error.message
+          : "No fue posible cerrar la sesión.",
+      );
+    }
   }
 
   return (
@@ -494,6 +505,16 @@ function ProfilePage() {
               Explorar servicios
             </Link>
 
+            <Link to="/proyectos" className={buttonClass}>
+              Ver proyectos realizados
+            </Link>
+
+            {isAdmin && (
+              <Link to="/administrar/proyectos" className={buttonClass}>
+                Gestionar proyectos
+              </Link>
+            )}
+
             <button
               type="button"
               onClick={handleLogout}
@@ -505,6 +526,7 @@ function ProfilePage() {
         </aside>
 
         <div className="tw:min-w-0">
+          {logoutError && <Feedback>{logoutError}</Feedback>}
           {isAdmin ? (
             <AdminPublications user={user} />
           ) : (

@@ -12,12 +12,6 @@ function validateId(id) {
   return value;
 }
 
-function requireToken(token) {
-  if (!token) {
-    throw new Error("Debes iniciar sesión para realizar esta operación.");
-  }
-}
-
 function postPayload(data) {
   const priceType = data.price_type ?? "fixed";
 
@@ -61,8 +55,6 @@ export async function getPost(id, { signal } = {}) {
 }
 
 export async function createPost(data, token) {
-  requireToken(token);
-
   return apiRequest("/posts", {
     method: "POST",
     body: postPayload(data),
@@ -72,7 +64,6 @@ export async function createPost(data, token) {
 
 export async function updatePost(id, data, token) {
   const postId = validateId(id);
-  requireToken(token);
 
   return apiRequest(`/posts/${postId}`, {
     method: "PUT",
@@ -83,7 +74,6 @@ export async function updatePost(id, data, token) {
 
 export async function deletePost(id, token) {
   const postId = validateId(id);
-  requireToken(token);
 
   return apiRequest(`/posts/${postId}`, {
     method: "DELETE",
@@ -96,8 +86,6 @@ export async function listMyPosts(
   { page = 1 } = {},
   { signal } = {}
 ) {
-  requireToken(token);
-
   const requestedPage = Number(page);
 
   if (

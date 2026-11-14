@@ -23,7 +23,7 @@ export default function useMyPosts(page) {
   const queryKey = JSON.stringify([userId, token, page]);
 
   useEffect(() => {
-    if (IS_DEMO_MODE || !token || !userId) {
+    if (IS_DEMO_MODE || !userId) {
       return;
     }
 
@@ -103,7 +103,7 @@ export default function useMyPosts(page) {
     };
   }
 
-  if (!token || !userId) {
+  if (!userId) {
     return {
       posts: [],
       pagination: null,

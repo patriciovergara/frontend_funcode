@@ -19,7 +19,7 @@ export default function useCurrentUser() {
   const queryKey = JSON.stringify([userId, token]);
 
   useEffect(() => {
-    if (IS_DEMO_MODE || !token || !userId) {
+    if (IS_DEMO_MODE || !userId) {
       return;
     }
 
@@ -76,7 +76,7 @@ export default function useCurrentUser() {
     };
   }
 
-  if (!token || !userId) {
+  if (!userId) {
     return {
       user: null,
       isLoading: false,

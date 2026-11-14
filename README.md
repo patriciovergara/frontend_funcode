@@ -68,6 +68,9 @@ Consultar `funcode/package.json` y `funcode/package-lock.json` para conocer las 
 - Consulta del perfil.
 - Navegación según el estado de sesión.
 - Funcionalidades adicionales según los permisos implementados.
+- Portafolio público de proyectos realizados.
+- Gestión administrativa para agregar, editar, publicar y eliminar proyectos.
+- La sesión se restaura desde la cookie `HttpOnly` al volver a abrir la aplicación; no depende de guardar el JWT en el navegador.
 
 ### Administración del catálogo
 
@@ -226,6 +229,7 @@ No se debe confundir una compilación exitosa con una prueba completa de integra
 - `apiClient.js`: cliente HTTP.
 - `authService.js`: operaciones de autenticación.
 - `postsApi.js`: operaciones de publicaciones.
+- `projectsApi.js`: consulta pública y gestión administrativa del portafolio.
 
 Consultar la implementación y `api-contract-updates.md` antes de modificar endpoints o formatos de respuesta.
 
@@ -239,9 +243,11 @@ Rutas utilizadas por los componentes recientes:
 |---|---|
 | `/` | Inicio. |
 | `/productos` | Catálogo. |
+| `/proyectos` | Portafolio público de proyectos realizados. |
 | `/login` | Inicio de sesión. |
 | `/registro` | Registro. |
 | `/mi-perfil` | Perfil autenticado. |
+| `/administrar/proyectos` | Gestión de proyectos (solo administrador). |
 | `/terminos` | Términos y condiciones. |
 | `/privacidad` | Política de privacidad. |
 
@@ -300,6 +306,7 @@ Mostrar los documentos no demuestra por sí solo cumplimiento legal ni registra 
 - [ ] Perfil protegido.
 - [ ] Permisos de administración comprobados.
 - [ ] Catálogo, filtros y detalle conectados a datos reales.
+- [ ] Portafolio visible y CRUD de proyectos verificado con una cuenta administradora.
 - [ ] Flujo de cotización verificado, si está habilitado.
 - [ ] Imágenes disponibles mediante URLs públicas.
 - [ ] Páginas legales completas.

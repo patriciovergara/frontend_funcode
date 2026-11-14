@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 import "./Navbar.css";
 
 function Navbar() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, session } = useAuth();
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -139,35 +139,57 @@ function Navbar() {
                 Servicios
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/proyectos"
+                className="fc-navbar__link"
+                onClick={closeMenu}
+              >
+                Proyectos
+              </NavLink>
+            </li>
           </ul>
 
           <ul className="fc-navbar__actions">
             {isAuthenticated ? (
-              <li>
-                <NavLink
-                  to="/mi-perfil"
-                  className="fc-navbar__button fc-navbar__button--secondary"
-                  onClick={closeMenu}
-                >
-                  Mi perfil
-
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.7"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                    focusable="false"
+              <>
+                {session?.user?.role === "admin" && (
+                  <li>
+                    <NavLink
+                      to="/administrar/proyectos"
+                      className="fc-navbar__link"
+                      onClick={closeMenu}
+                    >
+                      Administrar proyectos
+                    </NavLink>
+                  </li>
+                )}
+                <li>
+                  <NavLink
+                    to="/mi-perfil"
+                    className="fc-navbar__button fc-navbar__button--secondary"
+                    onClick={closeMenu}
                   >
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M5 21v-2a7 7 0 0 1 14 0v2" />
-                  </svg>
-                </NavLink>
-              </li>
+                    Mi perfil
+
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M5 21v-2a7 7 0 0 1 14 0v2" />
+                    </svg>
+                  </NavLink>
+                </li>
+              </>
             ) : (
               <>
                 <li>
