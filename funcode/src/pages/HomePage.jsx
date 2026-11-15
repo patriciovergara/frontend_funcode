@@ -258,7 +258,7 @@ function HomePage() {
             </p>
 
             <h1 id="home-title" className="fc-home__title">
-              Software hecho <mark>a mano</mark> para negocios reales.
+              Software hecho <mark>a medida</mark>, la presencia digital que tu negocio necesita.
             </h1>
 
             <p className="fc-home__lead">
