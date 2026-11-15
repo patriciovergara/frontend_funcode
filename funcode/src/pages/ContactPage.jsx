@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import { apiRequest } from "../services/apiClient";
+import { getRecaptchaToken } from "../services/recaptcha";
 
 const CONTACT_EMAIL = "contacto@funcode.cl";
 
@@ -31,9 +32,11 @@ function ContactPage() {
     setFeedback({ type: "", message: "" });
 
     try {
+      const recaptchaToken = await getRecaptchaToken("contact");
+
       await apiRequest("/contact", {
         method: "POST",
-        body: form,
+        body: { ...form, ...(recaptchaToken && { recaptchaToken }) },
       });
 
       setFeedback({
