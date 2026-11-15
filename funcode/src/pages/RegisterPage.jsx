@@ -20,6 +20,8 @@ function RegisterPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [verificationId, setVerificationId] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
+  const passwordsDoNotMatch =
+    form.confirmPassword !== "" && form.password !== form.confirmPassword;
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -41,7 +43,9 @@ function RegisterPage() {
     }
 
     if (form.password !== form.confirmPassword) {
-      setError("Las contraseñas no coinciden.");
+      if (!form.confirmPassword) {
+        setError("Confirma tu contraseña.");
+      }
       return;
     }
 
@@ -250,10 +254,17 @@ function RegisterPage() {
                 className={authStyles.field}
                 autoComplete="new-password"
                 minLength={8}
+                aria-invalid={passwordsDoNotMatch}
+                aria-describedby={passwordsDoNotMatch ? "confirm-password-error" : undefined}
                 value={form.confirmPassword}
                 onChange={handleChange}
                 required
               />
+              {passwordsDoNotMatch && (
+                <p id="confirm-password-error" className="tw:mt-2 tw:mb-0 tw:text-sm tw:text-funcode-danger" aria-live="polite">
+                  Las contraseñas no coinciden.
+                </p>
+              )}
             </div>
 
             {error && (
