@@ -1,5 +1,6 @@
 import { IS_DEMO_MODE } from "./apiConfig";
 import { apiRequest } from "./apiClient";
+import { getRecaptchaToken } from "./recaptcha";
 
 // Simulación temporal. Utilizar solamente credenciales ficticias.
 const accounts = [
@@ -27,11 +28,14 @@ export async function loginUser({ email, password }) {
   const normalizedEmail = email.trim().toLowerCase();
 
   if (!IS_DEMO_MODE) {
+    const recaptchaToken = await getRecaptchaToken("login");
+
     return apiRequest("/login", {
       method: "POST",
       body: {
         email: normalizedEmail,
         password,
+        ...(recaptchaToken && { recaptchaToken }),
       },
     });
   }
@@ -58,12 +62,15 @@ export async function registerUser({ name, email, password }) {
   const normalizedEmail = email.trim().toLowerCase();
 
   if (!IS_DEMO_MODE) {
+    const recaptchaToken = await getRecaptchaToken("register");
+
     return apiRequest("/users", {
       method: "POST",
       body: {
         name: normalizedName,
         email: normalizedEmail,
         password,
+        ...(recaptchaToken && { recaptchaToken }),
       },
     });
   }
