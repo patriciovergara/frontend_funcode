@@ -254,10 +254,19 @@ function Privacidad() {
         title="11. Cookies y almacenamiento del navegador"
       >
         <p>
-          Las tecnologías de sesión o almacenamiento que utilice el
-          sitio deberán limitarse a sus funciones informadas, como
-          mantener la autenticación y permitir operaciones solicitadas
-          por el usuario.
+          Al iniciar sesión, la API utiliza la cookie necesaria
+          <code> auth_token </code> para mantener la autenticación. Tiene
+          una duración máxima de una hora y se elimina al cerrar sesión.
+          Esta cookie es HttpOnly y utiliza SameSite=Lax; en producción
+          también se marca como Secure.
+        </p>
+
+        <p>
+          Al cerrar el aviso de cookies, guardamos en el almacenamiento
+          local de tu navegador que lo has leído. Este dato permanece
+          hasta que borres el almacenamiento del sitio. El aviso es
+          informativo y no registra consentimiento para seguimiento
+          o publicidad.
         </p>
 
         <p>
