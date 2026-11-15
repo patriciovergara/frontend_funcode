@@ -1,5 +1,5 @@
 const LOCAL_IMAGE_PATTERN =
-  /^\/assets\/servicios\/[a-z0-9][a-z0-9_-]*\.(?:webp|png|jpe?g)$/;
+  /^\/assets\/servicios\/[a-zA-Z0-9][a-zA-Z0-9_-]*\.(?:webp|png|jpe?g)$/;
 
 export function isValidImageSource(value) {
   if (typeof value !== "string") {

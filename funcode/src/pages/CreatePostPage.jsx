@@ -11,6 +11,7 @@ const initialForm = {
   category_id: "",
   price_type: "from",
   price: "",
+  original_price: "",
   description: "",
   image_url: "",
 };
@@ -89,6 +90,10 @@ function CreatePostPage() {
     const priceType = form.price_type;
 
     const price = priceType === "quote" ? null : Number(form.price);
+    const originalPrice =
+      priceType === "quote" || form.original_price.trim() === ""
+        ? null
+        : Number(form.original_price);
 
     const category = categories.find(
       (item) => item.id === Number(form.category_id),
@@ -117,6 +122,16 @@ function CreatePostPage() {
       return;
     }
 
+    if (
+      originalPrice !== null &&
+      (!Number.isSafeInteger(originalPrice) ||
+        originalPrice <= price ||
+        originalPrice > 999999999999)
+    ) {
+      setError("El precio anterior debe ser un entero mayor al precio actual y de hasta 12 dígitos.");
+      return;
+    }
+
     if (!isValidImageSource(imageUrl)) {
       setError(
         "Ingresa una ruta de /assets/servicios/ o una URL HTTP/HTTPS válida.",
@@ -132,6 +147,7 @@ function CreatePostPage() {
         description,
         price,
         price_type: priceType,
+        original_price: originalPrice,
         image_url: imageUrl,
         category_id: category.id,
       });
@@ -347,6 +363,25 @@ function CreatePostPage() {
                     <p id="post-price-help" className={helpClass}>
                       Ingresa el importe en pesos chilenos, sin puntos ni
                       decimales.
+                    </p>
+
+                    <label htmlFor="post-original-price" className={`${labelClass} tw:mt-4`}>
+                      Precio anterior (CLP, opcional)
+                    </label>
+                    <input
+                      id="post-original-price"
+                      name="original_price"
+                      type="number"
+                      className={inputClass}
+                      min="1"
+                      max="999999999999"
+                      step="1"
+                      value={form.original_price}
+                      onChange={handleChange}
+                      aria-describedby="post-original-price-help"
+                    />
+                    <p id="post-original-price-help" className={helpClass}>
+                      Déjalo vacío si no hay oferta. Debe ser mayor que el precio actual.
                     </p>
                   </div>
                 ) : (

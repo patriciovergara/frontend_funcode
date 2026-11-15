@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import OriginalPrice from "./OriginalPrice";
 import { formatPrice } from "../utils/formatPrice";
 
 function ServiceImage({ src, title }) {
@@ -110,6 +111,11 @@ function PostCard({ post }) {
         </h2>
 
         <div className="tw:mt-auto">
+          <OriginalPrice
+            price={post.price}
+            priceType={post.price_type}
+            originalPrice={post.original_price}
+          />
           <p
             className="
               tw:mb-5 tw:text-xl tw:leading-snug

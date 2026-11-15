@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import usePost from "../hooks/usePost";
 import { formatPrice } from "../utils/formatPrice";
+import OriginalPrice from "../components/OriginalPrice";
 import { createServiceRequest } from "../services/serviceRequestsApi";
 
 const initialRequestForm = {
@@ -644,6 +645,11 @@ function PostDetailPage() {
               Precio del servicio
             </p>
 
+            <OriginalPrice
+              price={post.price}
+              priceType={post.price_type}
+              originalPrice={post.original_price}
+            />
             <p className="tw:mb-3 tw:text-3xl tw:font-semibold tw:tracking-tight tw:text-funcode-text">
               {formatPrice(post.price, post.price_type)}
             </p>

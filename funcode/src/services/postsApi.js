@@ -20,6 +20,9 @@ function postPayload(data) {
     description: data.description,
     price: priceType === "quote" ? null : Number(data.price),
     price_type: priceType,
+    original_price: priceType === "quote" || data.original_price == null
+      ? null
+      : Number(data.original_price),
     image_url: data.image_url,
     category_id: Number(data.category_id),
   };
