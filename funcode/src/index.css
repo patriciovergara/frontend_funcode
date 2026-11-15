@@ -1,7 +1,7 @@
 :root {
-  font-family: "Manrope Variable", Manrope, "Segoe UI", sans-serif;
-  color: #eef4ff;
-  background: #070b13;
+  font-family: "Instrument Sans Variable", "Segoe UI", sans-serif;
+  color: #f3eee3;
+  background: #0e0d0b;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,11 +14,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  color: #eef4ff;
-  background:
-    radial-gradient(ellipse at 50% -24rem, rgba(47, 86, 148, 0.18), transparent 55%),
-    #070b13;
-  font-family: "Manrope Variable", Manrope, "Segoe UI", sans-serif;
+  color: #f3eee3;
+  background: #0e0d0b;
+  font-family: "Instrument Sans Variable", "Segoe UI", sans-serif;
 }
 
 button,
@@ -28,7 +26,46 @@ textarea {
   font: inherit;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Bricolage Grotesque Variable", "Instrument Sans Variable", sans-serif;
+}
+/* Bootstrap se mantiene, pero su color primario (azul) pasa al de marca. */
+:root {
+  --bs-primary: #e8923a;
+  --bs-primary-rgb: 232, 146, 58;
+  --bs-link-color: #e8923a;
+  --bs-link-color-rgb: 232, 146, 58;
+  --bs-link-hover-color: #f4a95a;
+  --bs-link-hover-color-rgb: 244, 169, 90;
+  --bs-focus-ring-color: rgba(232, 146, 58, 0.4);
+}
+
+.btn-primary {
+  --bs-btn-color: #14110d;
+  --bs-btn-bg: #e8923a;
+  --bs-btn-border-color: #e8923a;
+  --bs-btn-hover-color: #14110d;
+  --bs-btn-hover-bg: #f4a95a;
+  --bs-btn-hover-border-color: #f4a95a;
+  --bs-btn-active-color: #14110d;
+  --bs-btn-active-bg: #d98122;
+  --bs-btn-active-border-color: #d98122;
+  --bs-btn-disabled-color: #14110d;
+  --bs-btn-disabled-bg: #e8923a;
+  --bs-btn-disabled-border-color: #e8923a;
+  --bs-btn-focus-shadow-rgb: 232, 146, 58;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #e8923a;
+  box-shadow: 0 0 0 0.25rem rgba(232, 146, 58, 0.25);
+}
+
 ::selection {
-  color: #07111f;
-  background: #8ad9ff;
+  color: #14110d;
+  background: #e8923a;
 }

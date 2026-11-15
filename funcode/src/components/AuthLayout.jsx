@@ -84,7 +84,7 @@ function AuthLayout({
                 tw:pointer-events-none tw:absolute
                 tw:-top-12 tw:-right-12
                 tw:h-48 tw:w-48 tw:rounded-full
-                tw:bg-funcode-violet/15 tw:blur-3xl
+                tw:bg-funcode-sage/15 tw:blur-3xl
               "
             />
 
@@ -130,7 +130,7 @@ function AuthLayout({
                 <span
                   className="
                     tw:h-1 tw:w-12 tw:rounded-full
-                    tw:bg-funcode-violet/60
+                    tw:bg-funcode-sage/60
                   "
                 />
 

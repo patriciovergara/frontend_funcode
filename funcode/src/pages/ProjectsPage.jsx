@@ -76,7 +76,7 @@ function ProjectCard({ project }) {
             tw:inline-flex tw:min-h-11 tw:items-center tw:gap-2
             tw:rounded-xl tw:bg-funcode-accent tw:px-4 tw:py-2.5
             tw:text-sm tw:font-semibold tw:text-funcode-bg
-            tw:no-underline tw:hover:bg-sky-200
+            tw:no-underline tw:hover:bg-funcode-accent-hover
             tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4
             tw:focus-visible:outline-funcode-accent
           "

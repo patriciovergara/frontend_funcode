@@ -229,7 +229,7 @@ function LegalLayout({ title, introduction, children }) {
               tw:pointer-events-none
               tw:absolute tw:-top-20 tw:-right-20
               tw:h-56 tw:w-56 tw:rounded-full
-              tw:bg-funcode-violet/10 tw:blur-3xl
+              tw:bg-funcode-sage/10 tw:blur-3xl
             "
           />
 
@@ -328,7 +328,7 @@ function LegalLayout({ title, introduction, children }) {
               tw:bg-funcode-accent tw:px-5 tw:py-3
               tw:text-sm tw:font-semibold
               tw:text-funcode-bg! tw:no-underline!
-              tw:transition-colors tw:hover:bg-sky-200
+              tw:transition-colors tw:hover:bg-funcode-accent-hover
               tw:focus-visible:outline-2
               tw:focus-visible:outline-offset-4
               tw:focus-visible:outline-funcode-accent

@@ -645,7 +645,7 @@ function EditPostForm({ post }) {
                 tw:font-sans tw:text-sm tw:font-semibold
                 tw:text-funcode-bg!
                 tw:transition-colors tw:cursor-pointer
-                tw:enabled:hover:bg-sky-200
+                tw:enabled:hover:bg-funcode-accent-hover
                 tw:disabled:cursor-wait tw:disabled:opacity-60
                 tw:focus-visible:outline-2
                 tw:focus-visible:outline-offset-4

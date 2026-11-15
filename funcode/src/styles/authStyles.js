@@ -2,7 +2,7 @@ export const authStyles = {
   field: `
     tw:block tw:min-h-12 tw:w-full
     tw:rounded-xl
-    tw:border tw:border-solid tw:border-funcode-line
+    tw:border tw:border-solid tw:border-funcode-field
     tw:bg-funcode-bg tw:px-4 tw:py-3
     tw:font-sans tw:text-base tw:text-funcode-text
     tw:placeholder:text-funcode-muted
@@ -26,7 +26,7 @@ export const authStyles = {
     tw:bg-funcode-accent tw:px-5 tw:py-3
     tw:font-sans tw:text-sm tw:font-semibold tw:text-funcode-bg
     tw:transition-colors
-    tw:enabled:cursor-pointer tw:enabled:hover:bg-sky-200
+    tw:enabled:cursor-pointer tw:enabled:hover:bg-funcode-accent-hover
     tw:disabled:cursor-not-allowed tw:disabled:opacity-60
     tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4
     tw:focus-visible:outline-funcode-accent
@@ -35,7 +35,7 @@ export const authStyles = {
 
   link: `
     tw:text-funcode-accent! tw:underline tw:underline-offset-4
-    tw:hover:text-sky-200!
+    tw:hover:text-funcode-accent-hover!
     tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4
     tw:focus-visible:outline-funcode-accent
   `,

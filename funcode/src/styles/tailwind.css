@@ -12,48 +12,49 @@
 
 @theme {
   /* Colores de marca */
-  --color-funcode-bg: #090e19;
-  --color-funcode-surface: #111a2b;
-  --color-funcode-surface-raised: #182338;
+  --color-funcode-bg: #0e0d0b;
+  --color-funcode-surface: #1d1a16;
+  --color-funcode-surface-raised: #26221c;
 
-  --color-funcode-accent: #7dd3fc;
-  --color-funcode-violet: #b8a3ff;
+  --color-funcode-accent: #e8923a;
+  --color-funcode-accent-hover: #f4a95a;
+  --color-funcode-sage: #a9bfa3;
 
-  --color-funcode-text: #f4f7ff;
-  --color-funcode-muted: #b2bdd0;
-  --color-funcode-line: #2c3b52;
+  --color-funcode-text: #f3eee3;
+  --color-funcode-muted: #b8af9e;
+  --color-funcode-line: #3b352c;
+  --color-funcode-field: #7a6f5e;
 
   /* Estados */
-  --color-funcode-success: #86efac;
-  --color-funcode-warning: #fcd34d;
-  --color-funcode-danger: #fda4af;
+  --color-funcode-success: #8fd19e;
+  --color-funcode-warning: #f2c94c;
+  --color-funcode-danger: #ff8f80;
 
-  /* Tipografía: sin descargas externas por ahora */
+  /* Tipografía autoalojada mediante Fontsource */
   --font-sans:
-    "Manrope Variable",
-    Manrope,
+    "Instrument Sans Variable",
     "Segoe UI",
     Arial,
     Helvetica,
     sans-serif;
 
   --font-display:
-    "Space Grotesk Variable",
-    "Space Grotesk",
-    "Manrope Variable",
+    "Bricolage Grotesque Variable",
+    "Instrument Sans Variable",
     sans-serif;
 
   --font-mono:
+    "JetBrains Mono Variable",
     Consolas,
     "Liberation Mono",
     monospace;
 
   /* Sombras compartidas */
   --shadow-funcode-card:
-    0 16px 48px rgb(0 0 0 / 0.18);
+    0 18px 48px rgb(0 0 0 / 0.32);
 
   --shadow-funcode-glow:
-    0 12px 40px rgb(125 211 252 / 0.14);
+    0 10px 32px rgb(232 146 58 / 0.16);
 
   /* Movimiento compartido */
   --animate-funcode-enter:

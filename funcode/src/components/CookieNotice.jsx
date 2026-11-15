@@ -47,7 +47,7 @@ function CookieNotice() {
             a tu cuenta. También guardamos en tu navegador que leíste este aviso.{" "}
             <Link
               to="/privacidad"
-              className="tw:text-funcode-accent tw:underline tw:underline-offset-4 tw:hover:text-sky-200 tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4 tw:focus-visible:outline-funcode-accent"
+              className="tw:text-funcode-accent tw:underline tw:underline-offset-4 tw:hover:text-funcode-accent-hover tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4 tw:focus-visible:outline-funcode-accent"
             >
               Política de privacidad
             </Link>
@@ -59,7 +59,7 @@ function CookieNotice() {
           className="
             tw:min-h-11 tw:shrink-0 tw:cursor-pointer tw:rounded-xl tw:border-0
             tw:bg-funcode-accent tw:px-6 tw:py-3 tw:text-sm tw:font-semibold
-            tw:text-funcode-bg tw:hover:bg-sky-200
+            tw:text-funcode-bg tw:hover:bg-funcode-accent-hover
             tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4
             tw:focus-visible:outline-funcode-accent
           "

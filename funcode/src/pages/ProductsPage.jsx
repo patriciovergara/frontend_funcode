@@ -171,7 +171,7 @@ function ProductsPage() {
           className="
             tw:pointer-events-none tw:absolute tw:-top-24 tw:-right-16
             tw:h-72 tw:w-72 tw:rounded-full
-            tw:bg-funcode-violet/15 tw:blur-3xl
+            tw:bg-funcode-sage/15 tw:blur-3xl
           "
         />
 

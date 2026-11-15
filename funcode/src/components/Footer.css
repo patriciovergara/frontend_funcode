@@ -3,11 +3,11 @@
    ========================================= */
 
 .fc-footer {
-  --fc-bg: #090e19;
-  --fc-text: #f4f7ff;
-  --fc-muted: #b2bdd0;
-  --fc-line: rgba(172, 193, 228, 0.16);
-  --fc-accent: #7dd3fc;
+  --fc-bg: #0e0d0b;
+  --fc-text: #f3eee3;
+  --fc-muted: #b8af9e;
+  --fc-line: rgba(243, 238, 227, 0.14);
+  --fc-accent: #e8923a;
 
   position: relative;
   isolation: isolate;
@@ -31,37 +31,19 @@
   pointer-events: none;
   background-image:
     linear-gradient(
-      rgba(125, 160, 210, 0.035) 1px,
+      rgba(243, 238, 227, 0.03) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(125, 160, 210, 0.035) 1px,
+      rgba(243, 238, 227, 0.03) 1px,
       transparent 1px
     );
   background-size: 64px 64px;
 }
 
 .fc-footer__glow {
-  position: absolute;
-  top: -220px;
-  right: -180px;
-  z-index: -1;
-  width: 700px;
-  height: 700px;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      circle at 40% 40%,
-      rgba(58, 124, 255, 0.19),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at 70% 65%,
-      rgba(139, 92, 246, 0.13),
-      transparent 50%
-    );
-  animation: fc-footer-drift 16s ease-in-out infinite alternate;
+  display: none;
 }
 
 .fc-footer__container {
@@ -102,24 +84,20 @@
   height: 7px;
   border-radius: 50%;
   background: var(--fc-accent);
-  box-shadow: 0 0 16px rgba(125, 211, 252, 0.45);
 }
 
 .fc-footer__title {
   margin: 0;
   color: var(--fc-text);
+  font-family: "Bricolage Grotesque Variable", sans-serif;
   font-size: clamp(2.6rem, 5.5vw, 4.9rem);
   font-weight: 700;
-  letter-spacing: -0.055em;
-  line-height: 1.08;
+  letter-spacing: -0.045em;
+  line-height: 1.04;
 }
 
 .fc-footer__title span {
   color: var(--fc-accent);
-  background: linear-gradient(100deg, #7dd3fc, #b8a3ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .fc-footer__intro {
@@ -142,10 +120,10 @@
   gap: 24px;
   min-height: 60px;
   padding: 10px 12px 10px 24px;
-  color: #07111f;
-  background: linear-gradient(110deg, #a5e2ff, #b8b4ff);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
+  color: #14110d;
+  background: #e8923a;
+  border: 1px solid #e8923a;
+  border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 700;
   text-decoration: none;
@@ -159,8 +137,8 @@
   width: 38px;
   height: 38px;
   place-items: center;
-  background: rgba(9, 14, 25, 0.08);
-  border-radius: 9px;
+  background: rgba(14, 13, 11, 0.12);
+  border-radius: 5px;
 }
 
 .fc-footer__button-icon svg {
@@ -200,10 +178,10 @@
   height: 42px;
   place-items: center;
   color: var(--fc-accent);
-  background: rgba(125, 211, 252, 0.05);
-  border: 1px solid rgba(125, 211, 252, 0.3);
-  border-radius: 12px;
-  font-family: monospace;
+  background: rgba(232, 146, 58, 0.06);
+  border: 1px solid rgba(232, 146, 58, 0.45);
+  border-radius: 6px;
+  font-family: "JetBrains Mono Variable", monospace;
   font-size: 1.1rem;
   letter-spacing: -0.1em;
 }
@@ -221,7 +199,7 @@
 }
 
 .fc-footer__signature {
-  color: #c3cddd;
+  color: #cfc6b5;
   font-size: 0.78rem;
 }
 
@@ -252,7 +230,7 @@
   gap: 16px;
   min-height: 48px;
   padding-block: 13px;
-  color: #d9e2f1;
+  color: #e6dfd0;
   border-bottom: 1px solid var(--fc-line);
   font-size: 0.85rem;
   line-height: 1.5;
@@ -262,7 +240,7 @@
 
 .fc-footer__link svg {
   flex-shrink: 0;
-  color: #8a9bb5;
+  color: #9a917f;
   transition:
     color 200ms ease,
     transform 200ms ease;
@@ -275,7 +253,8 @@
 .fc-footer__wordmark {
   overflow: hidden;
   padding-block: 8px 24px;
-  color: rgba(125, 160, 210, 0.05);
+  color: rgba(243, 238, 227, 0.04);
+  font-family: "Bricolage Grotesque Variable", sans-serif;
   font-size: clamp(3.5rem, 15vw, 11rem);
   font-weight: 800;
   letter-spacing: 0.035em;
@@ -283,7 +262,7 @@
   text-align: center;
   white-space: nowrap;
   user-select: none;
-  -webkit-text-stroke: 1px rgba(172, 193, 228, 0.18);
+  -webkit-text-stroke: 1px rgba(243, 238, 227, 0.16);
 }
 
 .fc-footer__bottom {
@@ -334,9 +313,11 @@
 
 @media (hover: hover) {
   .fc-footer__button:hover {
-    color: #07111f;
+    color: #14110d;
+    background: #f4a95a;
+    border-color: #f4a95a;
     transform: translateY(-3px);
-    box-shadow: 0 10px 36px rgba(125, 160, 255, 0.2);
+    box-shadow: 0 10px 28px rgba(232, 146, 58, 0.22);
   }
 
   .fc-footer__button:hover svg {

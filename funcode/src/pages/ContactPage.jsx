@@ -57,11 +57,11 @@ function ContactPage() {
     <section className="container py-5">
       <div className="row justify-content-center">
         <div className="col-lg-8">
-          <div className="card border-0 shadow-sm rounded-4 overflow-hidden" style={{ background: "#0b1320" }}>
+          <div className="card border-0 shadow-sm rounded-4 overflow-hidden" style={{ background: "#1d1a16" }}>
             <div className="card-body p-4 p-md-5">
               <div className="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
                 <div>
-                  <p className="text-uppercase mb-2" style={{ color: "#7dd3fc", letterSpacing: "0.14em", fontSize: "0.72rem", fontWeight: 700 }}>
+                  <p className="text-uppercase mb-2" style={{ color: "#e8923a", letterSpacing: "0.14em", fontSize: "0.72rem", fontWeight: 700 }}>
                     Contacto
                   </p>
                   <h1 className="mb-0 text-white">Hablemos de tu proyecto</h1>
@@ -72,9 +72,9 @@ function ContactPage() {
                 </Link>
               </div>
 
-              <div className="mb-4 p-3 rounded-4 border border-light border-opacity-10" style={{ background: "rgba(125, 160, 210, 0.04)" }}>
+              <div className="mb-4 p-3 rounded-4 border border-light border-opacity-10" style={{ background: "rgba(243, 238, 227, 0.04)" }}>
                 <div className="text-white-50 mb-2">Correo de contacto</div>
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-decoration-none fw-semibold" style={{ color: "#7dd3fc" }}>
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-decoration-none fw-semibold" style={{ color: "#e8923a" }}>
                   {CONTACT_EMAIL}
                 </a>
               </div>
@@ -164,7 +164,7 @@ function ContactPage() {
                     {isSubmitting ? "Enviando..." : "Enviar mensaje"}
                   </button>
 
-                  <a href={`mailto:${CONTACT_EMAIL}?subject=Consulta%20Funcode`} className="text-decoration-none" style={{ color: "#b8a3ff" }}>
+                  <a href={`mailto:${CONTACT_EMAIL}?subject=Consulta%20Funcode`} className="text-decoration-none" style={{ color: "#a9bfa3" }}>
                     Enviar por correo directo
                   </a>
                 </div>

@@ -34,7 +34,7 @@ const primaryButton = `
   tw:text-funcode-bg! tw:no-underline!
   tw:transition-colors
   tw:enabled:cursor-pointer
-  tw:hover:bg-sky-200
+  tw:hover:bg-funcode-accent-hover
   tw:disabled:cursor-not-allowed tw:disabled:opacity-60
   tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4
   tw:focus-visible:outline-funcode-accent
@@ -72,7 +72,7 @@ const fieldClass = `
 
 const inlineLink = `
   tw:text-funcode-accent! tw:underline tw:underline-offset-4
-  tw:hover:text-sky-200!
+  tw:hover:text-funcode-accent-hover!
   tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4
   tw:focus-visible:outline-funcode-accent
 `;

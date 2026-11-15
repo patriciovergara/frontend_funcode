@@ -3,11 +3,11 @@
    ========================================= */
 
 .fc-navbar {
-  --fc-nav-bg: rgba(9, 14, 25, 0.94);
-  --fc-nav-text: #f4f7ff;
-  --fc-nav-muted: #b2bdd0;
-  --fc-nav-accent: #7dd3fc;
-  --fc-nav-line: rgba(172, 193, 228, 0.16);
+  --fc-nav-bg: rgba(14, 13, 11, 0.94);
+  --fc-nav-text: #f3eee3;
+  --fc-nav-muted: #b8af9e;
+  --fc-nav-accent: #e8923a;
+  --fc-nav-line: rgba(243, 238, 227, 0.14);
 
   position: sticky;
   top: 0;
@@ -30,7 +30,7 @@
   (-webkit-backdrop-filter: blur(16px))
 ) {
   .fc-navbar {
-    background: rgba(9, 14, 25, 0.84);
+    background: rgba(14, 13, 11, 0.84);
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
   }
@@ -74,10 +74,10 @@
   height: 40px;
   place-items: center;
   color: var(--fc-nav-accent);
-  background: rgba(125, 211, 252, 0.05);
-  border: 1px solid rgba(125, 211, 252, 0.3);
-  border-radius: 12px;
-  font-family: monospace;
+  background: rgba(232, 146, 58, 0.06);
+  border: 1px solid rgba(232, 146, 58, 0.45);
+  border-radius: 6px;
+  font-family: "JetBrains Mono Variable", monospace;
   font-size: 1.05rem;
   letter-spacing: -0.1em;
   transition:
@@ -144,7 +144,7 @@
   bottom: 3px;
   left: 2px;
   height: 2px;
-  background: linear-gradient(90deg, #7dd3fc, #b8a3ff);
+  background: var(--fc-nav-accent);
   border-radius: 999px;
   transform: scaleX(0);
   transform-origin: left;
@@ -172,10 +172,10 @@
   gap: 8px;
   min-height: 44px;
   padding: 11px 18px;
-  color: #07111f;
-  background: linear-gradient(110deg, #a5e2ff, #b8b4ff);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 11px;
+  color: #14110d;
+  background: #e8923a;
+  border: 1px solid #e8923a;
+  border-radius: 8px;
   font: inherit;
   font-size: 0.84rem;
   font-weight: 700;
@@ -190,7 +190,7 @@
 
 .fc-navbar__button--secondary {
   color: var(--fc-nav-text);
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(243, 238, 227, 0.04);
   border-color: var(--fc-nav-line);
 }
 
@@ -279,8 +279,8 @@
 
 @media (hover: hover) {
   .fc-navbar__brand:hover .fc-navbar__brand-symbol {
-    border-color: rgba(125, 211, 252, 0.65);
-    box-shadow: 0 0 20px rgba(125, 211, 252, 0.1);
+    border-color: rgba(232, 146, 58, 0.85);
+    box-shadow: none;
   }
 
   .fc-navbar__link:hover {
@@ -292,19 +292,22 @@
   }
 
   .fc-navbar__button:not(:disabled):hover {
-    color: #07111f;
+    color: #14110d;
+    background: #f4a95a;
+    border-color: #f4a95a;
     transform: translateY(-2px);
-    box-shadow: 0 6px 22px rgba(125, 160, 255, 0.2);
+    box-shadow: 0 6px 18px rgba(232, 146, 58, 0.22);
   }
 
   .fc-navbar__button--secondary:not(:disabled):hover {
     color: var(--fc-nav-text);
-    background: rgba(125, 211, 252, 0.08);
+    background: rgba(232, 146, 58, 0.1);
+    border-color: rgba(232, 146, 58, 0.5);
     box-shadow: none;
   }
 
   .fc-navbar__toggle:hover {
-    background: rgba(125, 211, 252, 0.08);
+    background: rgba(232, 146, 58, 0.1);
   }
 }
 
@@ -361,10 +364,7 @@
   .fc-navbar__link.active,
   .fc-navbar__link[aria-current="page"] {
     color: var(--fc-nav-accent);
-    background: rgba(125, 211, 252, 0.08);
-  }
-
-  .fc-navbar__actions {
+    background: rgba(232, 146, 58, 0.1);
     align-items: stretch;
     flex-wrap: wrap;
     gap: 12px;
