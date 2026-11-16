@@ -41,6 +41,11 @@ pública se omite la obtención del token; el backend local también debe estar
 configurado para el mismo modo. En producción, sin clave pública los formularios
 protegidos muestran un error y no se envían.
 
+El formulario de contacto completa nombre y correo para usuarios con sesión.
+Las cuentas con correo verificado envían directamente; los visitantes y
+cuentas antiguas aún no verificadas deben confirmar un código enviado por
+correo. El teléfono es opcional y se valida su formato, no su disponibilidad.
+
 El sitio incluye también el contacto corporativo de Funcode: `contacto@funcode.cl` y un formulario de contacto que se entrega al buzón de la marca en producción.
 
 ## Tecnologías

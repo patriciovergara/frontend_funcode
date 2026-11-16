@@ -53,6 +53,11 @@ function Privacidad() {
             proyecto y comunicaciones relacionadas.
           </li>
           <li>
+            Verificación de contacto: correo, mensaje y datos del formulario
+            pendientes de confirmación, junto con un código protegido y su
+            vencimiento.
+          </li>
+          <li>
             Contratación y facturación: datos necesarios para
             documentar el servicio y cumplir obligaciones legales,
             cuando corresponda.
@@ -163,6 +168,11 @@ function Privacidad() {
       </LegalSection>
 
       <LegalSection id="conservacion" title="7. Conservación">
+        <p>
+          El código de contacto vence a los 10 minutos. Las solicitudes
+          pendientes se eliminan al completarse o, si vencen sin confirmación,
+          cuando se inicia una nueva solicitud de contacto.
+        </p>
         <p>
           Los datos se conservarán mientras exista una finalidad
           informada y un fundamento legal para su tratamiento.
