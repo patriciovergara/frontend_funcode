@@ -34,6 +34,13 @@ El frontend se ha ajustado para evitar modos inseguros por defecto:
 
 Esto evita que la interfaz siga conectándose a datos de prueba al desplegarse en producción.
 
+Los formularios de registro, inicio de sesión, contacto y cotización usan
+reCAPTCHA v3. Configura la clave pública `VITE_RECAPTCHA_SITE_KEY` al compilar
+el frontend y la clave secreta únicamente en el backend. En desarrollo sin clave
+pública se omite la obtención del token; el backend local también debe estar
+configurado para el mismo modo. En producción, sin clave pública los formularios
+protegidos muestran un error y no se envían.
+
 El sitio incluye también el contacto corporativo de Funcode: `contacto@funcode.cl` y un formulario de contacto que se entrega al buzón de la marca en producción.
 
 ## Tecnologías

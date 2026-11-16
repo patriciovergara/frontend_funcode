@@ -125,6 +125,16 @@ function Privacidad() {
 
       <LegalSection id="destinatarios" title="6. Acceso y destinatarios">
         <p>
+          Para proteger los formularios de registro, inicio de sesión, contacto
+          y cotización utilizamos Google reCAPTCHA v3. Al usar estos formularios,
+          Google puede tratar datos técnicos y de interacción para evaluar el
+          riesgo de abuso. Consulta la{" "}
+          <a href="https://policies.google.com/privacy">Política de Privacidad</a>
+          {" "}y las{" "}
+          <a href="https://policies.google.com/terms">Condiciones de Servicio</a>
+          {" "}de Google.
+        </p>
+        <p>
           El acceso a los datos deberá limitarse a quienes lo
           necesiten para las finalidades informadas y estén sujetos
           a obligaciones de confidencialidad.
@@ -253,6 +263,11 @@ function Privacidad() {
         id="almacenamiento"
         title="11. Cookies y almacenamiento del navegador"
       >
+        <p>
+          Google reCAPTCHA puede utilizar cookies y otras tecnologías de
+          almacenamiento al verificar los formularios, conforme a su política
+          de privacidad.
+        </p>
         <p>
           Al iniciar sesión, la API utiliza la cookie necesaria
           <code> auth_token </code> para mantener la autenticación. Tiene

@@ -44,7 +44,9 @@ function CookieNotice() {
           </h2>
           <p className="tw:m-0 tw:text-sm tw:leading-relaxed tw:text-funcode-muted">
             Usamos una cookie necesaria para mantener tu sesión cuando ingresas
-            a tu cuenta. También guardamos en tu navegador que leíste este aviso.{" "}
+            a tu cuenta. También guardamos en tu navegador que leíste este aviso.
+            Los formularios usan Google reCAPTCHA, que puede utilizar cookies
+            para prevenir abusos.{" "}
             <Link
               to="/privacidad"
               className="tw:text-funcode-accent tw:underline tw:underline-offset-4 tw:hover:text-funcode-accent-hover tw:focus-visible:outline-2 tw:focus-visible:outline-offset-4 tw:focus-visible:outline-funcode-accent"
