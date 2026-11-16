@@ -71,6 +71,18 @@ node --test tests/shareMetadata.test.js
 Los servicios que muestran enlaces pueden guardar la vista anterior en caché;
 después de desplegar, su actualización no necesariamente es inmediata.
 
+## Sitemap para buscadores
+
+`funcode/public/sitemap.xml` enumera las páginas públicas principales y los
+productos existentes. Es estático: al agregar o eliminar productos, actualiza
+sus URL en el archivo y vuelve a desplegar el frontend. No incluye páginas
+privadas ni fechas de modificación estimadas.
+
+Después del despliegue, comprueba `https://funcode.cl/sitemap.xml` y envía
+`sitemap.xml` desde la sección **Sitemaps** de Google Search Console para la
+propiedad correspondiente. `robots.txt` también anuncia la ubicación del
+sitemap. Enviarlo ayuda a descubrir las URL, pero no garantiza su indexación.
+
 ## Tecnologías
 
 - React.
