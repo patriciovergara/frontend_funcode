@@ -48,6 +48,29 @@ correo. El teléfono es opcional y se valida su formato, no su disponibilidad.
 
 El sitio incluye también el contacto corporativo de Funcode: `contacto@funcode.cl` y un formulario de contacto que se entrega al buzón de la marca en producción.
 
+## Vista previa al compartir
+
+La compilación genera páginas HTML estáticas con título y descripción para las
+páginas públicas. Todas usan la imagen de Funcode en
+`funcode/public/social/funcode-preview.png`; los productos comparten una vista
+genérica y no muestran su nombre individual. El SVG del mismo directorio es la
+fuente de la imagen. Si se modifica, hay que volver a generar el PNG de
+1200 × 630 píxeles antes de compilar.
+
+Cloudflare Pages sirve las páginas estáticas y usa su comportamiento de SPA
+para las demás rutas. La regla de `public/_redirects` entrega una vista común
+para `/productos/:id`, sin ejecutar funciones ni consultar el backend. Este
+comportamiento debe comprobarse en una implementación de Cloudflare Pages;
+`vite preview` no interpreta `_redirects`. Para validar los archivos generados:
+
+```bash
+npm run build
+node --test tests/shareMetadata.test.js
+```
+
+Los servicios que muestran enlaces pueden guardar la vista anterior en caché;
+después de desplegar, su actualización no necesariamente es inmediata.
+
 ## Tecnologías
 
 - React.

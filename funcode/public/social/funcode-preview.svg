@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#14120f"/>
+  <rect x="34" y="34" width="1132" height="562" rx="26" fill="#1d1a16" stroke="#514133" stroke-width="2"/>
+  <circle cx="1054" cy="158" r="187" fill="#e8923a" opacity=".06"/>
+  <circle cx="1054" cy="158" r="127" fill="none" stroke="#e8923a" stroke-opacity=".18"/>
+  <rect x="82" y="88" width="76" height="76" rx="20" fill="#30251b"/>
+  <path d="M109 112 96 126l13 14m22-28 13 14-13 14m-5-34-12 40" fill="none" stroke="#e8923a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="179" y="140" fill="#f3eee3" font-family="Arial, sans-serif" font-weight="700" font-size="52">Fun<tspan fill="#e8923a">code</tspan></text>
+  <text x="86" y="278" fill="#e8923a" font-family="Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="4">DISEÑO Y DESARROLLO DIGITAL</text>
+  <text x="82" y="366" fill="#f3eee3" font-family="Arial, sans-serif" font-size="60" font-weight="700">Software hecho a medida,</text>
+  <text x="82" y="442" fill="#f3eee3" font-family="Arial, sans-serif" font-size="53" font-weight="700">la presencia digital que tu</text>
+  <text x="82" y="510" fill="#f3eee3" font-family="Arial, sans-serif" font-size="53" font-weight="700">negocio necesita.</text>
+  <text x="1018" y="548" text-anchor="end" fill="#b9ada0" font-family="Arial, sans-serif" font-size="22">funcode.cl</text>
+</svg>

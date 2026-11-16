@@ -1,1 +1,2 @@
-/*  /index.html  200
+/productos/:id  /_social/producto  200
+/productos/:id/  /_social/producto  200
